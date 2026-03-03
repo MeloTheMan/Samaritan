@@ -45,5 +45,44 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	
+	<!-- Bluetooth permissions -->
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Samaritan a besoin d'accéder au Bluetooth pour se connecter à votre bracelet de santé et détecter les alertes d'urgence à proximité.</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Samaritan utilise le Bluetooth pour communiquer avec votre bracelet de santé et recevoir vos signes vitaux en temps réel.</string>
+	
+	<!-- Location permissions -->
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Samaritan a besoin de votre localisation pour vous guider vers les personnes en détresse à proximité.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Samaritan a besoin d'accéder à votre localisation en arrière-plan pour détecter les alertes d'urgence même lorsque l'application n'est pas active.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Samaritan a besoin d'accéder à votre localisation en arrière-plan pour le réseau d'entraide communautaire.</string>
+	
+	<!-- Camera permission -->
+	<key>NSCameraUsageDescription</key>
+	<string>Samaritan a besoin d'accéder à la caméra pour analyser des photos ou vidéos de situations médicales et fournir des recommandations de premiers secours.</string>
+	
+	<!-- Microphone permission -->
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Samaritan a besoin d'accéder au microphone pour la saisie vocale des symptômes et situations d'urgence.</string>
+	
+	<!-- Photo library permission -->
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Samaritan a besoin d'accéder à vos photos pour analyser des images de situations médicales.</string>
+	
+	<!-- Face ID permission -->
+	<key>NSFaceIDUsageDescription</key>
+	<string>Samaritan utilise Face ID pour sécuriser l'accès à vos données de santé personnelles.</string>
+	
+	<!-- Background modes -->
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>bluetooth-central</string>
+		<string>bluetooth-peripheral</string>
+		<string>location</string>
+		<string>fetch</string>
+	</array>
 </dict>
 </plist>

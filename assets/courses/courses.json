@@ -1,0 +1,430 @@
+[
+    {
+        "id": "cardiac-arrest",
+        "title": "Arrêt Cardiaque",
+        "category": "Urgences Vitales",
+        "thumbnailUrl": "assets/images/cardiac_arrest.png",
+        "estimatedDuration": 15,
+        "difficulty": "advanced",
+        "steps": [
+            {
+                "order": 1,
+                "title": "Reconnaître un arrêt cardiaque",
+                "description": "Un arrêt cardiaque survient lorsque le cœur cesse de battre efficacement. La victime perd connaissance, ne respire plus ou présente une respiration anormale (gasps). Il est crucial d'agir immédiatement car chaque minute compte.",
+                "media": [
+                    {
+                        "url": "assets/images/cardiac_arrest_recognition.png",
+                        "type": "image",
+                        "caption": "Signes d'un arrêt cardiaque"
+                    }
+                ],
+                "keyPoints": [
+                    "La victime ne répond pas aux stimulations",
+                    "Absence de respiration normale",
+                    "Perte de conscience soudaine",
+                    "Peau pâle ou bleutée"
+                ]
+            },
+            {
+                "order": 2,
+                "title": "Appeler les secours",
+                "description": "Dès que vous constatez un arrêt cardiaque, appelez immédiatement le 15 (SAMU) ou le 112 (numéro d'urgence européen). Si vous n'êtes pas seul, demandez à quelqu'un d'autre d'appeler pendant que vous commencez les gestes de secours.",
+                "media": [],
+                "keyPoints": [
+                    "Composez le 15 ou le 112",
+                    "Indiquez votre localisation précise",
+                    "Décrivez l'état de la victime",
+                    "Ne raccrochez pas avant qu'on vous le demande"
+                ]
+            },
+            {
+                "order": 3,
+                "title": "Commencer les compressions thoraciques",
+                "description": "Placez la victime sur une surface dure et plane. Agenouillez-vous à côté d'elle. Placez le talon d'une main au centre de la poitrine, entre les deux mamelons. Placez l'autre main par-dessus. Bras tendus, comprimez verticalement la poitrine de 5 à 6 cm à un rythme de 100 à 120 compressions par minute.",
+                "media": [
+                    {
+                        "url": "assets/images/chest_compressions.png",
+                        "type": "image",
+                        "caption": "Position correcte pour les compressions thoraciques"
+                    }
+                ],
+                "keyPoints": [
+                    "Comprimer au centre de la poitrine",
+                    "Profondeur : 5 à 6 cm",
+                    "Rythme : 100 à 120 compressions/minute",
+                    "Laisser la poitrine reprendre sa position entre chaque compression"
+                ]
+            },
+            {
+                "order": 4,
+                "title": "Effectuer le bouche-à-bouche",
+                "description": "Après 30 compressions, basculez délicatement la tête de la victime en arrière et soulevez le menton pour dégager les voies aériennes. Pincez le nez, couvrez complètement la bouche de la victime avec la vôtre et insufflez pendant 1 seconde jusqu'à voir la poitrine se soulever. Répétez une deuxième fois.",
+                "media": [
+                    {
+                        "url": "assets/images/rescue_breathing.png",
+                        "type": "image",
+                        "caption": "Technique du bouche-à-bouche"
+                    }
+                ],
+                "keyPoints": [
+                    "Basculer la tête en arrière",
+                    "Pincer le nez",
+                    "2 insufflations après 30 compressions",
+                    "Chaque insufflation dure 1 seconde"
+                ]
+            },
+            {
+                "order": 5,
+                "title": "Continuer la réanimation",
+                "description": "Alternez 30 compressions thoraciques et 2 insufflations jusqu'à l'arrivée des secours, l'arrivée d'un défibrillateur, ou jusqu'à ce que la victime reprenne une respiration normale. Ne vous arrêtez pas sauf si vous êtes épuisé ou en danger.",
+                "media": [],
+                "keyPoints": [
+                    "Ratio : 30 compressions / 2 insufflations",
+                    "Ne pas interrompre plus de 10 secondes",
+                    "Continuer jusqu'à l'arrivée des secours",
+                    "Si possible, relayez-vous toutes les 2 minutes"
+                ]
+            }
+        ]
+    },
+    {
+        "id": "choking",
+        "title": "Étouffement",
+        "category": "Obstruction des Voies Aériennes",
+        "thumbnailUrl": "assets/images/choking.png",
+        "estimatedDuration": 10,
+        "difficulty": "beginner",
+        "steps": [
+            {
+                "order": 1,
+                "title": "Identifier un étouffement",
+                "description": "Une personne qui s'étouffe ne peut plus parler, tousser efficacement ou respirer. Elle porte souvent les mains à sa gorge (signe universel de détresse). Son visage peut devenir rouge puis bleu. Il s'agit d'une urgence vitale nécessitant une action immédiate.",
+                "media": [
+                    {
+                        "url": "assets/images/choking_signs.png",
+                        "type": "image",
+                        "caption": "Signes d'étouffement"
+                    }
+                ],
+                "keyPoints": [
+                    "Impossibilité de parler ou de tousser",
+                    "Mains portées à la gorge",
+                    "Visage rouge ou bleuté",
+                    "Respiration impossible"
+                ]
+            },
+            {
+                "order": 2,
+                "title": "Encourager la toux",
+                "description": "Si la victime peut encore tousser, même faiblement, encouragez-la à continuer. La toux est le mécanisme naturel le plus efficace pour expulser un corps étranger. Restez près d'elle et surveillez son état. Si la toux devient inefficace, passez aux claques dans le dos.",
+                "media": [],
+                "keyPoints": [
+                    "Demander à la victime de tousser fort",
+                    "Ne pas intervenir si la toux est efficace",
+                    "Surveiller l'évolution",
+                    "Appeler les secours si l'obstruction persiste"
+                ]
+            },
+            {
+                "order": 3,
+                "title": "Donner des claques dans le dos",
+                "description": "Penchez la victime en avant. Donnez jusqu'à 5 claques vigoureuses entre les omoplates avec le talon de votre main. Vérifiez après chaque claque si l'objet est expulsé. Les claques doivent être fermes et dirigées vers le haut pour déloger l'obstruction.",
+                "media": [
+                    {
+                        "url": "assets/images/back_blows.png",
+                        "type": "image",
+                        "caption": "Technique des claques dans le dos"
+                    }
+                ],
+                "keyPoints": [
+                    "Pencher la victime en avant",
+                    "5 claques maximum entre les omoplates",
+                    "Utiliser le talon de la main",
+                    "Vérifier après chaque claque"
+                ]
+            },
+            {
+                "order": 4,
+                "title": "Effectuer la manœuvre de Heimlich",
+                "description": "Si les claques sont inefficaces, placez-vous derrière la victime. Placez un poing fermé entre le nombril et le sternum. Saisissez ce poing avec votre autre main. Effectuez jusqu'à 5 compressions abdominales rapides et vigoureuses vers l'intérieur et vers le haut. Alternez avec 5 claques dans le dos si nécessaire.",
+                "media": [
+                    {
+                        "url": "assets/images/heimlich_maneuver.png",
+                        "type": "image",
+                        "caption": "Manœuvre de Heimlich"
+                    }
+                ],
+                "keyPoints": [
+                    "Poing entre nombril et sternum",
+                    "Compressions vers l'intérieur et le haut",
+                    "5 compressions maximum",
+                    "Alterner avec les claques dans le dos"
+                ]
+            },
+            {
+                "order": 5,
+                "title": "Continuer jusqu'à désobstruction",
+                "description": "Continuez à alterner 5 claques dans le dos et 5 compressions abdominales jusqu'à ce que l'objet soit expulsé ou que la victime perde connaissance. Si elle perd connaissance, allongez-la et commencez la réanimation cardio-pulmonaire. Appelez les secours si ce n'est pas déjà fait.",
+                "media": [],
+                "keyPoints": [
+                    "Alterner claques et compressions",
+                    "Appeler le 15 ou 112",
+                    "Si perte de connaissance : RCP",
+                    "Ne pas abandonner"
+                ]
+            }
+        ]
+    },
+    {
+        "id": "burns",
+        "title": "Brûlures",
+        "category": "Traumatismes",
+        "thumbnailUrl": "assets/images/burns.png",
+        "estimatedDuration": 12,
+        "difficulty": "beginner",
+        "steps": [
+            {
+                "order": 1,
+                "title": "Évaluer la gravité de la brûlure",
+                "description": "Les brûlures sont classées en trois degrés. Premier degré : rougeur, douleur (coup de soleil). Deuxième degré : cloques, douleur intense. Troisième degré : peau blanche ou noire, peu ou pas de douleur (nerfs détruits). La surface brûlée et la localisation sont aussi importantes.",
+                "media": [
+                    {
+                        "url": "assets/images/burn_degrees.png",
+                        "type": "image",
+                        "caption": "Les différents degrés de brûlure"
+                    }
+                ],
+                "keyPoints": [
+                    "1er degré : rougeur simple",
+                    "2e degré : présence de cloques",
+                    "3e degré : peau détruite",
+                    "Appeler le 15 si brûlure étendue ou grave"
+                ]
+            },
+            {
+                "order": 2,
+                "title": "Refroidir la brûlure",
+                "description": "Arrosez immédiatement la brûlure avec de l'eau fraîche (15-25°C) pendant au moins 15 minutes. Ne jamais utiliser de glace. Le refroidissement doit commencer le plus tôt possible et se poursuivre même pendant le transport vers l'hôpital si nécessaire. Cela limite l'extension de la brûlure et soulage la douleur.",
+                "media": [
+                    {
+                        "url": "assets/images/cooling_burn.png",
+                        "type": "image",
+                        "caption": "Refroidissement d'une brûlure"
+                    }
+                ],
+                "keyPoints": [
+                    "Eau fraîche (15-25°C)",
+                    "Minimum 15 minutes",
+                    "Jamais de glace",
+                    "Commencer le plus tôt possible"
+                ]
+            },
+            {
+                "order": 3,
+                "title": "Retirer les vêtements",
+                "description": "Retirez délicatement les vêtements et bijoux de la zone brûlée, sauf s'ils adhèrent à la peau. Les bijoux peuvent comprimer si un gonflement survient. Continuez le refroidissement pendant cette opération. Ne jamais arracher ce qui colle à la peau.",
+                "media": [],
+                "keyPoints": [
+                    "Retirer vêtements et bijoux",
+                    "Sauf si collés à la peau",
+                    "Continuer le refroidissement",
+                    "Agir avec délicatesse"
+                ]
+            },
+            {
+                "order": 4,
+                "title": "Protéger la brûlure",
+                "description": "Après refroidissement, couvrez la brûlure avec un linge propre et sec, ou un pansement stérile si disponible. Ne percez jamais les cloques. N'appliquez aucun produit (crème, beurre, dentifrice, etc.). Ces substances peuvent aggraver la brûlure et compliquer les soins médicaux.",
+                "media": [
+                    {
+                        "url": "assets/images/covering_burn.png",
+                        "type": "image",
+                        "caption": "Protection d'une brûlure"
+                    }
+                ],
+                "keyPoints": [
+                    "Couvrir avec un linge propre",
+                    "Ne pas percer les cloques",
+                    "Aucun produit sur la brûlure",
+                    "Pansement stérile si possible"
+                ]
+            },
+            {
+                "order": 5,
+                "title": "Surveiller et consulter",
+                "description": "Surveillez l'état de la victime. Appelez le 15 si la brûlure est étendue (plus grande que la paume de la main), profonde, située sur le visage, les mains, les articulations ou les organes génitaux, ou si la victime est un enfant ou une personne âgée. En cas de doute, consultez toujours un médecin.",
+                "media": [],
+                "keyPoints": [
+                    "Appeler le 15 si brûlure grave",
+                    "Surveiller l'état général",
+                    "Consulter si doute",
+                    "Attention aux enfants et personnes âgées"
+                ]
+            }
+        ]
+    },
+    {
+        "id": "fractures",
+        "title": "Fractures",
+        "category": "Traumatismes",
+        "thumbnailUrl": "assets/images/fractures.png",
+        "estimatedDuration": 10,
+        "difficulty": "intermediate",
+        "steps": [
+            {
+                "order": 1,
+                "title": "Reconnaître une fracture",
+                "description": "Une fracture se manifeste par une douleur intense, un gonflement, une déformation visible, une impossibilité de bouger le membre, parfois un craquement entendu au moment du traumatisme. La victime ne peut généralement pas utiliser le membre blessé. En cas de doute, traitez toujours comme une fracture.",
+                "media": [
+                    {
+                        "url": "assets/images/fracture_signs.png",
+                        "type": "image",
+                        "caption": "Signes d'une fracture"
+                    }
+                ],
+                "keyPoints": [
+                    "Douleur intense et localisée",
+                    "Gonflement et déformation",
+                    "Impossibilité de bouger",
+                    "En cas de doute : immobiliser"
+                ]
+            },
+            {
+                "order": 2,
+                "title": "Ne pas mobiliser le membre",
+                "description": "Ne tentez jamais de remettre un os en place ou de redresser un membre déformé. Cela pourrait aggraver les lésions, endommager les nerfs et les vaisseaux sanguins. Laissez le membre dans la position où vous l'avez trouvé. Votre rôle est d'immobiliser, pas de réduire la fracture.",
+                "media": [],
+                "keyPoints": [
+                    "Ne jamais manipuler l'os",
+                    "Ne pas redresser le membre",
+                    "Laisser dans la position trouvée",
+                    "Risque de lésions supplémentaires"
+                ]
+            },
+            {
+                "order": 3,
+                "title": "Immobiliser le membre",
+                "description": "Immobilisez le membre fracturé dans la position où il se trouve. Utilisez des attelles improvisées (planches, magazines roulés, oreillers) ou maintenez le membre contre le corps. L'immobilisation doit englober les articulations au-dessus et en dessous de la fracture. Fixez avec des bandages ou du tissu sans trop serrer.",
+                "media": [
+                    {
+                        "url": "assets/images/immobilization.png",
+                        "type": "image",
+                        "caption": "Techniques d'immobilisation"
+                    }
+                ],
+                "keyPoints": [
+                    "Immobiliser dans la position trouvée",
+                    "Englober les articulations adjacentes",
+                    "Utiliser des attelles improvisées",
+                    "Ne pas trop serrer"
+                ]
+            },
+            {
+                "order": 4,
+                "title": "Surveiller la circulation",
+                "description": "Après immobilisation, vérifiez régulièrement la circulation en aval de la fracture. Vérifiez la couleur de la peau, la température, la sensibilité et la capacité à bouger les doigts ou orteils. Si vous constatez un engourdissement, une pâleur ou un refroidissement, desserrez légèrement l'immobilisation.",
+                "media": [],
+                "keyPoints": [
+                    "Vérifier couleur et température",
+                    "Tester la sensibilité",
+                    "Demander de bouger doigts/orteils",
+                    "Desserrer si circulation compromise"
+                ]
+            },
+            {
+                "order": 5,
+                "title": "Appeler les secours",
+                "description": "Appelez le 15 ou le 112 pour toute fracture suspectée. Ne donnez rien à boire ou à manger à la victime (risque d'anesthésie). Couvrez la victime pour éviter l'hypothermie. Rassurez-la et restez avec elle jusqu'à l'arrivée des secours. Ne la déplacez que si elle est en danger immédiat.",
+                "media": [],
+                "keyPoints": [
+                    "Appeler le 15 ou 112",
+                    "Rien à boire ou manger",
+                    "Couvrir et rassurer",
+                    "Ne pas déplacer sauf danger"
+                ]
+            }
+        ]
+    },
+    {
+        "id": "stroke",
+        "title": "Accident Vasculaire Cérébral (AVC)",
+        "category": "Urgences Vitales",
+        "thumbnailUrl": "assets/images/stroke.png",
+        "estimatedDuration": 8,
+        "difficulty": "intermediate",
+        "steps": [
+            {
+                "order": 1,
+                "title": "Reconnaître les signes d'un AVC",
+                "description": "Utilisez la méthode VITE : Visage paralysé (demandez à la personne de sourire), Impossibilité de lever un bras, Trouble de la parole (demandez de répéter une phrase simple), En urgence appeler le 15. D'autres signes : maux de tête violents, troubles de la vision, vertiges, perte d'équilibre.",
+                "media": [
+                    {
+                        "url": "assets/images/stroke_signs.png",
+                        "type": "image",
+                        "caption": "Méthode VITE pour reconnaître un AVC"
+                    }
+                ],
+                "keyPoints": [
+                    "V : Visage paralysé d'un côté",
+                    "I : Impossibilité de lever un bras",
+                    "T : Trouble de la parole",
+                    "E : En urgence, appeler le 15"
+                ]
+            },
+            {
+                "order": 2,
+                "title": "Appeler immédiatement le 15",
+                "description": "L'AVC est une urgence absolue. Chaque minute compte car les cellules cérébrales meurent rapidement. Appelez le 15 ou le 112 immédiatement dès les premiers signes. Notez l'heure d'apparition des symptômes, cette information est cruciale pour le traitement. Ne perdez pas de temps à attendre que ça passe.",
+                "media": [],
+                "keyPoints": [
+                    "Appeler le 15 immédiatement",
+                    "Noter l'heure des premiers symptômes",
+                    "Chaque minute compte",
+                    "Ne pas attendre"
+                ]
+            },
+            {
+                "order": 3,
+                "title": "Installer la victime",
+                "description": "Allongez la victime en position semi-assise, tête et épaules légèrement surélevées (environ 30°). Si elle vomit ou perd connaissance, placez-la en position latérale de sécurité du côté paralysé. Ne lui donnez rien à boire ou à manger, même si elle a soif.",
+                "media": [
+                    {
+                        "url": "assets/images/stroke_position.png",
+                        "type": "image",
+                        "caption": "Position d'attente pour un AVC"
+                    }
+                ],
+                "keyPoints": [
+                    "Position semi-assise (30°)",
+                    "Si vomissements : position latérale",
+                    "Rien à boire ou manger",
+                    "Côté paralysé vers le bas si PLS"
+                ]
+            },
+            {
+                "order": 4,
+                "title": "Surveiller l'état de conscience",
+                "description": "Restez avec la victime et surveillez constamment son état de conscience et sa respiration. Parlez-lui pour la rassurer et la maintenir éveillée. Si elle perd connaissance et ne respire plus, commencez immédiatement la réanimation cardio-pulmonaire. Préparez-vous à informer les secours de toute évolution.",
+                "media": [],
+                "keyPoints": [
+                    "Surveiller conscience et respiration",
+                    "Parler et rassurer",
+                    "Si arrêt respiratoire : RCP",
+                    "Noter toute évolution"
+                ]
+            },
+            {
+                "order": 5,
+                "title": "Préparer l'arrivée des secours",
+                "description": "Rassemblez les informations médicales de la victime : traitements en cours, allergies, antécédents. Préparez les médicaments qu'elle prend. Facilitez l'accès des secours (ouvrez les portes, allumez les lumières). Restez calme et disponible pour répondre aux questions des secouristes.",
+                "media": [],
+                "keyPoints": [
+                    "Rassembler informations médicales",
+                    "Préparer les médicaments",
+                    "Faciliter l'accès des secours",
+                    "Rester disponible"
+                ]
+            }
+        ]
+    }
+]
