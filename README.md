@@ -1,4 +1,4 @@
-# samaritan
+# Samaritan
 
 A new Flutter project.
 
