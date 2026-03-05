@@ -52,3 +52,20 @@ class DurationAdapter extends TypeAdapter<Duration> {
     writer.writeInt(obj.inMicroseconds);
   }
 }
+
+// DateTime Adapter
+class DateTimeAdapter extends TypeAdapter<DateTime> {
+  @override
+  final int typeId = 9;
+
+  @override
+  DateTime read(BinaryReader reader) {
+    final milliseconds = reader.readInt();
+    return DateTime.fromMillisecondsSinceEpoch(milliseconds);
+  }
+
+  @override
+  void write(BinaryWriter writer, DateTime obj) {
+    writer.writeInt(obj.millisecondsSinceEpoch);
+  }
+}

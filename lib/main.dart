@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'core/di/injection.dart';
+import 'core/presentation/screens/main_screen.dart';
 import 'features/training/domain/entities/course.dart';
 import 'features/training/domain/entities/course_step.dart';
 import 'features/training/domain/entities/media_asset.dart';
+import 'features/training/domain/entities/quiz.dart';
+import 'features/training/domain/entities/quiz_question.dart';
+import 'features/training/domain/entities/quiz_result.dart';
 import 'features/training/domain/entities/hive_adapters.dart';
-import 'features/training/presentation/screens/training_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,9 +21,13 @@ void main() async {
   Hive.registerAdapter(CourseAdapter());
   Hive.registerAdapter(CourseStepAdapter());
   Hive.registerAdapter(MediaAssetAdapter());
+  Hive.registerAdapter(QuizAdapter());
+  Hive.registerAdapter(QuizQuestionAdapter());
+  Hive.registerAdapter(QuizResultAdapter());
   Hive.registerAdapter(DifficultyLevelAdapter());
   Hive.registerAdapter(MediaTypeAdapter());
   Hive.registerAdapter(DurationAdapter());
+  Hive.registerAdapter(DateTimeAdapter());
   
   // Configure dependency injection
   await configureDependencies();
@@ -61,7 +68,7 @@ class SamaritanApp extends StatelessWidget {
         fontFamily: 'Roboto',
       ),
       themeMode: ThemeMode.system,
-      home: const TrainingScreen(),
+      home: const MainScreen(),
     );
   }
 }

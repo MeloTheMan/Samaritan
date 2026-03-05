@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:hive/hive.dart';
 import 'course_step.dart';
 import 'difficulty_level.dart';
+import 'quiz.dart';
 
 part 'course.g.dart';
 
@@ -31,6 +32,9 @@ class Course extends Equatable {
   @HiveField(7)
   final bool isCompleted;
 
+  @HiveField(8)
+  final Quiz? quiz;
+
   const Course({
     required this.id,
     required this.title,
@@ -40,6 +44,7 @@ class Course extends Equatable {
     required this.estimatedDuration,
     required this.difficulty,
     this.isCompleted = false,
+    this.quiz,
   });
 
   factory Course.fromJson(Map<String, dynamic> json) {
@@ -57,6 +62,9 @@ class Course extends Equatable {
         orElse: () => DifficultyLevel.beginner,
       ),
       isCompleted: json['isCompleted'] as bool? ?? false,
+      quiz: json['quiz'] != null
+          ? Quiz.fromJson(json['quiz'] as Map<String, dynamic>)
+          : null,
     );
   }
 
@@ -70,6 +78,7 @@ class Course extends Equatable {
       'estimatedDuration': estimatedDuration.inMinutes,
       'difficulty': difficulty.name,
       'isCompleted': isCompleted,
+      'quiz': quiz?.toJson(),
     };
   }
 
@@ -82,6 +91,7 @@ class Course extends Equatable {
     Duration? estimatedDuration,
     DifficultyLevel? difficulty,
     bool? isCompleted,
+    Quiz? quiz,
   }) {
     return Course(
       id: id ?? this.id,
@@ -92,6 +102,7 @@ class Course extends Equatable {
       estimatedDuration: estimatedDuration ?? this.estimatedDuration,
       difficulty: difficulty ?? this.difficulty,
       isCompleted: isCompleted ?? this.isCompleted,
+      quiz: quiz ?? this.quiz,
     );
   }
 
@@ -105,5 +116,6 @@ class Course extends Equatable {
         estimatedDuration,
         difficulty,
         isCompleted,
+        quiz,
       ];
 }

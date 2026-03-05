@@ -4,6 +4,7 @@ import '../../domain/entities/course.dart';
 import '../bloc/training_bloc.dart';
 import '../bloc/training_event.dart';
 import '../widgets/course_step_widget.dart';
+import 'quiz_screen.dart';
 
 class CourseDetailScreen extends StatefulWidget {
   final Course course;
@@ -171,22 +172,44 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                             minimumSize: const Size(0, 48),
                           ),
                         )
-                      : ElevatedButton.icon(
-                          onPressed: widget.course.isCompleted
-                              ? null
-                              : () => _markAsCompleted(context),
-                          icon: const Icon(Icons.check),
-                          label: Text(
-                            widget.course.isCompleted
-                                ? 'Complété'
-                                : 'Marquer comme complété',
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            minimumSize: const Size(0, 48),
-                            backgroundColor: Colors.green,
-                            foregroundColor: Colors.white,
-                          ),
-                        ),
+                      : widget.course.quiz != null
+                          ? ElevatedButton.icon(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => QuizScreen(
+                                      quiz: widget.course.quiz!,
+                                      courseTitle: widget.course.title,
+                                      courseId: widget.course.id,
+                                    ),
+                                  ),
+                                );
+                              },
+                              icon: const Icon(Icons.quiz),
+                              label: const Text('Passer le quiz'),
+                              style: ElevatedButton.styleFrom(
+                                minimumSize: const Size(0, 48),
+                                backgroundColor: Theme.of(context).colorScheme.primary,
+                                foregroundColor: Colors.white,
+                              ),
+                            )
+                          : ElevatedButton.icon(
+                              onPressed: widget.course.isCompleted
+                                  ? null
+                                  : () => _markAsCompleted(context),
+                              icon: const Icon(Icons.check),
+                              label: Text(
+                                widget.course.isCompleted
+                                    ? 'Complété'
+                                    : 'Marquer comme complété',
+                              ),
+                              style: ElevatedButton.styleFrom(
+                                minimumSize: const Size(0, 48),
+                                backgroundColor: Colors.green,
+                                foregroundColor: Colors.white,
+                              ),
+                            ),
                 ),
               ],
             ),

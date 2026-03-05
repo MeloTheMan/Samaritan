@@ -16,6 +16,11 @@ import 'package:injectable/injectable.dart' as _i526;
 import 'package:local_auth/local_auth.dart' as _i152;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
+import '../../features/ai_assistant/domain/services/rule_engine.dart' as _i122;
+import '../../features/ai_assistant/domain/services/symptom_extractor.dart'
+    as _i356;
+import '../../features/ai_assistant/presentation/bloc/ai_assistant_bloc.dart'
+    as _i292;
 import '../../features/training/data/repositories/training_repository_impl.dart'
     as _i550;
 import '../../features/training/domain/repositories/training_repository.dart'
@@ -48,6 +53,7 @@ extension GetItInjectableX on _i174.GetIt {
       () => injectionModule.hive,
       preResolve: true,
     );
+    gh.factory<_i356.SymptomExtractor>(() => _i356.SymptomExtractor());
     gh.lazySingleton<_i895.Connectivity>(() => injectionModule.connectivity);
     gh.lazySingleton<_i558.FlutterSecureStorage>(
         () => injectionModule.secureStorage);
@@ -55,6 +61,7 @@ extension GetItInjectableX on _i174.GetIt {
         () => injectionModule.localAuth);
     gh.lazySingleton<_i180.EncryptionService>(() => _i180.EncryptionService());
     gh.lazySingleton<_i165.PermissionService>(() => _i165.PermissionService());
+    gh.lazySingleton<_i122.RuleEngine>(() => _i122.RuleEngine());
     gh.lazySingleton<_i580.TrainingRepository>(
         () => _i550.TrainingRepositoryImpl());
     gh.lazySingleton<_i932.NetworkInfo>(
@@ -63,6 +70,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i669.TrainingBloc(gh<_i580.TrainingRepository>()));
     gh.lazySingleton<_i535.SecureStorageService>(
         () => _i535.SecureStorageService(gh<_i558.FlutterSecureStorage>()));
+    gh.factory<_i292.AIAssistantBloc>(() => _i292.AIAssistantBloc(
+          ruleEngine: gh<_i122.RuleEngine>(),
+          symptomExtractor: gh<_i356.SymptomExtractor>(),
+        ));
     gh.lazySingleton<_i551.AuthenticationService>(
         () => _i551.AuthenticationService(
               gh<_i152.LocalAuthentication>(),

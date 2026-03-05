@@ -25,13 +25,14 @@ class CourseAdapter extends TypeAdapter<Course> {
       estimatedDuration: fields[5] as Duration,
       difficulty: fields[6] as DifficultyLevel,
       isCompleted: fields[7] as bool,
+      quiz: fields[8] as Quiz?,
     );
   }
 
   @override
   void write(BinaryWriter writer, Course obj) {
     writer
-      ..writeByte(8)
+      ..writeByte(9)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -47,7 +48,9 @@ class CourseAdapter extends TypeAdapter<Course> {
       ..writeByte(6)
       ..write(obj.difficulty)
       ..writeByte(7)
-      ..write(obj.isCompleted);
+      ..write(obj.isCompleted)
+      ..writeByte(8)
+      ..write(obj.quiz);
   }
 
   @override

@@ -85,7 +85,74 @@
                     "Si possible, relayez-vous toutes les 2 minutes"
                 ]
             }
-        ]
+        ],
+        "quiz": {
+            "id": "quiz-cardiac-arrest",
+            "courseId": "cardiac-arrest",
+            "passingScore": 70,
+            "questions": [
+                {
+                    "id": "q1",
+                    "question": "Quel est le premier signe d'un arrêt cardiaque?",
+                    "options": [
+                        "La victime tousse",
+                        "La victime ne répond pas et ne respire plus normalement",
+                        "La victime a mal à la poitrine",
+                        "La victime transpire beaucoup"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Un arrêt cardiaque se caractérise par une perte de connaissance et une absence de respiration normale. C'est une urgence vitale."
+                },
+                {
+                    "id": "q2",
+                    "question": "Quel numéro devez-vous appeler en cas d'arrêt cardiaque en France?",
+                    "options": [
+                        "17 (Police)",
+                        "18 (Pompiers)",
+                        "15 (SAMU) ou 112",
+                        "114 (Urgence pour sourds)"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "Le 15 (SAMU) ou le 112 (numéro d'urgence européen) sont les numéros à composer pour un arrêt cardiaque."
+                },
+                {
+                    "id": "q3",
+                    "question": "Quelle est la profondeur correcte des compressions thoraciques?",
+                    "options": [
+                        "2 à 3 cm",
+                        "5 à 6 cm",
+                        "8 à 10 cm",
+                        "Le plus profond possible"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Les compressions doivent être de 5 à 6 cm de profondeur pour être efficaces, tout en laissant la poitrine reprendre sa position."
+                },
+                {
+                    "id": "q4",
+                    "question": "Quel est le rythme correct des compressions thoraciques?",
+                    "options": [
+                        "60 à 80 compressions par minute",
+                        "100 à 120 compressions par minute",
+                        "140 à 160 compressions par minute",
+                        "Le plus rapide possible"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Le rythme optimal est de 100 à 120 compressions par minute, soit environ 2 compressions par seconde."
+                },
+                {
+                    "id": "q5",
+                    "question": "Quel est le ratio compressions/insufflations en RCP?",
+                    "options": [
+                        "15 compressions / 2 insufflations",
+                        "30 compressions / 2 insufflations",
+                        "30 compressions / 5 insufflations",
+                        "Compressions continues sans insufflations"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Le ratio standard est de 30 compressions thoraciques suivies de 2 insufflations."
+                }
+            ]
+        }
     },
     {
         "id": "choking",
@@ -173,7 +240,74 @@
                     "Ne pas abandonner"
                 ]
             }
-        ]
+        ],
+        "quiz": {
+            "id": "quiz-choking",
+            "courseId": "choking",
+            "passingScore": 70,
+            "questions": [
+                {
+                    "id": "q1",
+                    "question": "Quel est le signe universel de l'étouffement?",
+                    "options": [
+                        "La personne tousse fort",
+                        "La personne porte les mains à sa gorge",
+                        "La personne parle difficilement",
+                        "La personne pleure"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Porter les mains à la gorge est le signe universel de détresse en cas d'étouffement."
+                },
+                {
+                    "id": "q2",
+                    "question": "Que faire si la victime peut encore tousser?",
+                    "options": [
+                        "Faire immédiatement la manœuvre de Heimlich",
+                        "Donner des claques dans le dos",
+                        "Encourager à continuer de tousser",
+                        "Appeler les secours"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "Si la toux est efficace, c'est le meilleur moyen d'expulser le corps étranger. Il faut encourager la personne à continuer."
+                },
+                {
+                    "id": "q3",
+                    "question": "Combien de claques dans le dos maximum avant de passer aux compressions abdominales?",
+                    "options": [
+                        "3 claques",
+                        "5 claques",
+                        "10 claques",
+                        "Autant que nécessaire"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "On donne jusqu'à 5 claques dans le dos, puis on passe aux compressions abdominales si inefficace."
+                },
+                {
+                    "id": "q4",
+                    "question": "Où placer le poing pour la manœuvre de Heimlich?",
+                    "options": [
+                        "Sur le sternum",
+                        "Entre le nombril et le sternum",
+                        "Sur le nombril",
+                        "Sous les côtes"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Le poing doit être placé entre le nombril et le sternum pour effectuer les compressions abdominales."
+                },
+                {
+                    "id": "q5",
+                    "question": "Que faire si la victime perd connaissance pendant l'étouffement?",
+                    "options": [
+                        "Continuer les claques dans le dos",
+                        "Allonger et commencer la RCP",
+                        "Mettre en position latérale de sécurité",
+                        "Attendre les secours"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Si la victime perd connaissance, il faut l'allonger et commencer immédiatement la réanimation cardio-pulmonaire."
+                }
+            ]
+        }
     },
     {
         "id": "burns",
@@ -261,7 +395,74 @@
                     "Attention aux enfants et personnes âgées"
                 ]
             }
-        ]
+        ],
+        "quiz": {
+            "id": "quiz-burns",
+            "courseId": "burns",
+            "passingScore": 70,
+            "questions": [
+                {
+                    "id": "q1",
+                    "question": "Quelle est la première action à faire en cas de brûlure?",
+                    "options": [
+                        "Appliquer de la glace",
+                        "Mettre du beurre",
+                        "Refroidir avec de l'eau fraîche pendant 15 minutes",
+                        "Percer les cloques"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "Il faut immédiatement refroidir la brûlure avec de l'eau fraîche (15-25°C) pendant au moins 15 minutes."
+                },
+                {
+                    "id": "q2",
+                    "question": "Quelle température d'eau utiliser pour refroidir une brûlure?",
+                    "options": [
+                        "Eau glacée (0-5°C)",
+                        "Eau fraîche (15-25°C)",
+                        "Eau tiède (30-35°C)",
+                        "Eau chaude (40-45°C)"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "L'eau doit être fraîche (15-25°C). L'eau glacée peut aggraver les lésions."
+                },
+                {
+                    "id": "q3",
+                    "question": "Faut-il percer les cloques d'une brûlure?",
+                    "options": [
+                        "Oui, toujours",
+                        "Oui, si elles sont grandes",
+                        "Non, jamais",
+                        "Seulement avec une aiguille stérile"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "Il ne faut jamais percer les cloques car elles protègent la plaie des infections."
+                },
+                {
+                    "id": "q4",
+                    "question": "Quand faut-il appeler le 15 pour une brûlure?",
+                    "options": [
+                        "Pour toute brûlure",
+                        "Si la brûlure est plus grande que la paume de la main",
+                        "Seulement si la personne perd connaissance",
+                        "Jamais, aller directement à l'hôpital"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Il faut appeler le 15 si la brûlure est étendue, profonde, ou située sur des zones sensibles."
+                },
+                {
+                    "id": "q5",
+                    "question": "Que ne faut-il JAMAIS appliquer sur une brûlure?",
+                    "options": [
+                        "De l'eau fraîche",
+                        "Un pansement stérile",
+                        "Du beurre ou de la crème",
+                        "Un linge propre"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "Il ne faut jamais appliquer de produits (beurre, crème, dentifrice) qui peuvent aggraver la brûlure."
+                }
+            ]
+        }
     },
     {
         "id": "fractures",
@@ -343,7 +544,74 @@
                     "Ne pas déplacer sauf danger"
                 ]
             }
-        ]
+        ],
+        "quiz": {
+            "id": "quiz-fractures",
+            "courseId": "fractures",
+            "passingScore": 70,
+            "questions": [
+                {
+                    "id": "q1",
+                    "question": "Que faire face à un membre déformé suite à un traumatisme?",
+                    "options": [
+                        "Essayer de le remettre en place",
+                        "Le redresser doucement",
+                        "L'immobiliser dans la position trouvée",
+                        "Masser la zone"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "Il ne faut jamais tenter de manipuler une fracture. Il faut immobiliser dans la position trouvée."
+                },
+                {
+                    "id": "q2",
+                    "question": "Que doit englober l'immobilisation d'une fracture?",
+                    "options": [
+                        "Seulement la zone fracturée",
+                        "Les articulations au-dessus et en dessous",
+                        "Tout le membre",
+                        "Seulement l'articulation la plus proche"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "L'immobilisation doit englober les articulations au-dessus et en dessous de la fracture."
+                },
+                {
+                    "id": "q3",
+                    "question": "Que vérifier après avoir immobilisé une fracture?",
+                    "options": [
+                        "La température corporelle",
+                        "La circulation en aval (couleur, température, sensibilité)",
+                        "La tension artérielle",
+                        "Le rythme cardiaque"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Il faut vérifier régulièrement la circulation en aval: couleur, température, sensibilité et mobilité."
+                },
+                {
+                    "id": "q4",
+                    "question": "Peut-on donner à boire à une personne avec une fracture?",
+                    "options": [
+                        "Oui, toujours",
+                        "Oui, seulement de l'eau",
+                        "Non, rien à boire ou manger",
+                        "Seulement des boissons chaudes"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "Il ne faut rien donner à boire ou à manger en cas de fracture (risque d'anesthésie)."
+                },
+                {
+                    "id": "q5",
+                    "question": "Quand faut-il appeler les secours pour une fracture?",
+                    "options": [
+                        "Seulement si la personne saigne",
+                        "Pour toute fracture suspectée",
+                        "Seulement si la douleur est intense",
+                        "Jamais, aller directement à l'hôpital"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Il faut appeler le 15 ou 112 pour toute fracture suspectée."
+                }
+            ]
+        }
     },
     {
         "id": "stroke",
@@ -425,6 +693,1277 @@
                     "Rester disponible"
                 ]
             }
-        ]
+        ],
+        "quiz": {
+            "id": "quiz-stroke",
+            "courseId": "stroke",
+            "passingScore": 70,
+            "questions": [
+                {
+                    "id": "q1",
+                    "question": "Que signifie l'acronyme VITE pour reconnaître un AVC?",
+                    "options": [
+                        "Visage, Impossibilité, Trouble, En urgence",
+                        "Vertige, Incapacité, Tête, Évacuation",
+                        "Vision, Instabilité, Tremblements, Évanouissement",
+                        "Vomissements, Irritation, Toux, Étourdissements"
+                    ],
+                    "correctAnswerIndex": 0,
+                    "explanation": "VITE: Visage paralysé, Impossibilité de lever un bras, Trouble de la parole, En urgence appeler le 15."
+                },
+                {
+                    "id": "q2",
+                    "question": "Pourquoi est-il crucial de noter l'heure d'apparition des symptômes?",
+                    "options": [
+                        "Pour le dossier médical",
+                        "C'est crucial pour le traitement",
+                        "Pour calculer le temps d'attente",
+                        "Ce n'est pas important"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "L'heure d'apparition des symptômes est cruciale car certains traitements ne peuvent être administrés que dans un délai limité."
+                },
+                {
+                    "id": "q3",
+                    "question": "Dans quelle position installer une victime d'AVC consciente?",
+                    "options": [
+                        "Allongée à plat",
+                        "Position latérale de sécurité",
+                        "Semi-assise (30°)",
+                        "Debout"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "La victime consciente doit être installée en position semi-assise, tête et épaules légèrement surélevées."
+                },
+                {
+                    "id": "q4",
+                    "question": "Peut-on donner à boire à une personne victime d'AVC?",
+                    "options": [
+                        "Oui, de l'eau fraîche",
+                        "Oui, une boisson chaude",
+                        "Non, rien à boire ou manger",
+                        "Seulement si elle a soif"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "Il ne faut rien donner à boire ou à manger à une victime d'AVC, même si elle a soif."
+                },
+                {
+                    "id": "q5",
+                    "question": "Quel est le délai critique pour agir en cas d'AVC?",
+                    "options": [
+                        "Chaque minute compte",
+                        "On a 24 heures",
+                        "On a 6 heures",
+                        "Il n'y a pas de délai"
+                    ],
+                    "correctAnswerIndex": 0,
+                    "explanation": "Chaque minute compte en cas d'AVC car les cellules cérébrales meurent rapidement."
+                }
+            ]
+        }
+    },
+    {
+        "id": "epilepsy",
+        "title": "Crise d'Épilepsie",
+        "category": "Urgences Neurologiques",
+        "thumbnailUrl": "assets/images/epilepsy.png",
+        "estimatedDuration": 8,
+        "difficulty": "beginner",
+        "steps": [
+            {
+                "order": 1,
+                "title": "Reconnaître une crise d'épilepsie",
+                "description": "Une crise d'épilepsie se manifeste par des convulsions (mouvements saccadés incontrôlables), une perte de connaissance, une rigidité du corps, parfois une perte d'urine. La personne peut avoir les yeux révulsés et baver. La crise dure généralement 1 à 3 minutes.",
+                "media": [
+                    {
+                        "url": "assets/images/epilepsy_signs.png",
+                        "type": "image",
+                        "caption": "Signes d'une crise d'épilepsie"
+                    }
+                ],
+                "keyPoints": [
+                    "Convulsions et mouvements saccadés",
+                    "Perte de connaissance",
+                    "Rigidité du corps",
+                    "Durée : 1 à 3 minutes généralement"
+                ]
+            },
+            {
+                "order": 2,
+                "title": "Protéger la victime",
+                "description": "Écartez les objets dangereux autour de la personne pour éviter qu'elle ne se blesse. Placez quelque chose de mou sous sa tête (veste, coussin). Ne tentez jamais de la retenir ou de bloquer ses mouvements. Ne mettez rien dans sa bouche.",
+                "media": [],
+                "keyPoints": [
+                    "Écarter les objets dangereux",
+                    "Protéger la tête",
+                    "Ne pas retenir la personne",
+                    "Ne rien mettre dans la bouche"
+                ]
+            },
+            {
+                "order": 3,
+                "title": "Chronométrer la crise",
+                "description": "Notez l'heure de début de la crise. Si elle dure plus de 5 minutes ou si une deuxième crise survient immédiatement après, appelez le 15. Observez le déroulement de la crise pour pouvoir le décrire aux secours.",
+                "media": [],
+                "keyPoints": [
+                    "Noter l'heure de début",
+                    "Appeler le 15 si crise > 5 minutes",
+                    "Observer le déroulement",
+                    "Appeler si crises répétées"
+                ]
+            },
+            {
+                "order": 4,
+                "title": "Après la crise",
+                "description": "Une fois la crise terminée, placez la personne en position latérale de sécurité. Elle sera probablement confuse et fatiguée. Restez avec elle jusqu'à ce qu'elle récupère complètement. Rassurez-la et expliquez-lui ce qui s'est passé.",
+                "media": [
+                    {
+                        "url": "assets/images/recovery_position.png",
+                        "type": "image",
+                        "caption": "Position latérale de sécurité"
+                    }
+                ],
+                "keyPoints": [
+                    "Position latérale de sécurité",
+                    "Rester avec la personne",
+                    "Rassurer et expliquer",
+                    "Confusion et fatigue normales"
+                ]
+            },
+            {
+                "order": 5,
+                "title": "Quand appeler les secours",
+                "description": "Appelez le 15 si : c'est la première crise de la personne, la crise dure plus de 5 minutes, plusieurs crises se succèdent, la personne est blessée, elle ne reprend pas conscience après 10 minutes, ou si vous avez un doute.",
+                "media": [],
+                "keyPoints": [
+                    "Première crise de la personne",
+                    "Crise > 5 minutes",
+                    "Crises répétées",
+                    "Blessure ou non-réveil"
+                ]
+            }
+        ],
+        "quiz": {
+            "id": "quiz-epilepsy",
+            "courseId": "epilepsy",
+            "passingScore": 70,
+            "questions": [
+                {
+                    "id": "q1",
+                    "question": "Que faire pendant une crise d'épilepsie?",
+                    "options": [
+                        "Retenir la personne",
+                        "Mettre quelque chose dans sa bouche",
+                        "Protéger la tête et écarter les objets dangereux",
+                        "Essayer de la réveiller"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "Il faut protéger la personne en écartant les objets dangereux et en protégeant sa tête."
+                },
+                {
+                    "id": "q2",
+                    "question": "Faut-il mettre quelque chose dans la bouche pendant une crise?",
+                    "options": [
+                        "Oui, pour éviter qu'elle avale sa langue",
+                        "Oui, un mouchoir",
+                        "Non, jamais",
+                        "Seulement si elle mord sa langue"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "Il ne faut jamais rien mettre dans la bouche. On ne peut pas avaler sa langue et cela pourrait blesser."
+                },
+                {
+                    "id": "q3",
+                    "question": "Quand appeler le 15 pour une crise d'épilepsie?",
+                    "options": [
+                        "Pour toute crise",
+                        "Si c'est la première crise ou si elle dure plus de 5 minutes",
+                        "Seulement si la personne saigne",
+                        "Jamais, c'est bénin"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Il faut appeler le 15 si c'est la première crise, si elle dure plus de 5 minutes, ou si les crises se répètent."
+                },
+                {
+                    "id": "q4",
+                    "question": "Dans quelle position placer la personne après la crise?",
+                    "options": [
+                        "Sur le dos",
+                        "Assise",
+                        "Position latérale de sécurité",
+                        "Debout"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "Après la crise, il faut placer la personne en position latérale de sécurité."
+                },
+                {
+                    "id": "q5",
+                    "question": "Combien de temps dure généralement une crise d'épilepsie?",
+                    "options": [
+                        "Quelques secondes",
+                        "1 à 3 minutes",
+                        "10 à 15 minutes",
+                        "Plus de 30 minutes"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Une crise d'épilepsie dure généralement 1 à 3 minutes."
+                }
+            ]
+        }
+    },
+    {
+        "id": "unconsciousness",
+        "title": "Perte de Connaissance",
+        "category": "Urgences Vitales",
+        "thumbnailUrl": "assets/images/unconsciousness.png",
+        "estimatedDuration": 10,
+        "difficulty": "beginner",
+        "steps": [
+            {
+                "order": 1,
+                "title": "Vérifier la conscience",
+                "description": "Appelez la personne à voix haute, tapotez doucement ses épaules. Si elle ne répond pas, elle est inconsciente. C'est une urgence qui nécessite une action immédiate. Ne la laissez jamais seule.",
+                "media": [
+                    {
+                        "url": "assets/images/check_consciousness.png",
+                        "type": "image",
+                        "caption": "Vérification de la conscience"
+                    }
+                ],
+                "keyPoints": [
+                    "Appeler à voix haute",
+                    "Tapoter les épaules",
+                    "Pas de réponse = inconscience",
+                    "Ne jamais laisser seul"
+                ]
+            },
+            {
+                "order": 2,
+                "title": "Vérifier la respiration",
+                "description": "Basculez délicatement la tête en arrière et soulevez le menton pour dégager les voies aériennes. Approchez votre joue de la bouche et du nez de la victime. Regardez si la poitrine se soulève, écoutez les bruits respiratoires, sentez le souffle sur votre joue pendant 10 secondes.",
+                "media": [
+                    {
+                        "url": "assets/images/check_breathing.png",
+                        "type": "image",
+                        "caption": "Vérification de la respiration"
+                    }
+                ],
+                "keyPoints": [
+                    "Basculer la tête en arrière",
+                    "Regarder, écouter, sentir",
+                    "Vérifier pendant 10 secondes",
+                    "Observer le soulèvement de la poitrine"
+                ]
+            },
+            {
+                "order": 3,
+                "title": "Si la personne respire",
+                "description": "Placez-la en position latérale de sécurité (PLS). Allongez-la sur le côté, une jambe pliée, un bras sous la tête. Cette position empêche la langue de bloquer les voies aériennes et permet l'écoulement des liquides (vomissements, sang).",
+                "media": [
+                    {
+                        "url": "assets/images/recovery_position.png",
+                        "type": "image",
+                        "caption": "Position latérale de sécurité"
+                    }
+                ],
+                "keyPoints": [
+                    "Placer en position latérale",
+                    "Jambe pliée pour stabilité",
+                    "Bras sous la tête",
+                    "Empêche l'obstruction des voies aériennes"
+                ]
+            },
+            {
+                "order": 4,
+                "title": "Appeler les secours",
+                "description": "Appelez immédiatement le 15 ou le 112. Indiquez que la personne est inconsciente mais respire. Donnez votre localisation précise. Suivez les instructions du régulateur. Ne raccrochez pas avant qu'on vous le demande.",
+                "media": [],
+                "keyPoints": [
+                    "Appeler le 15 ou 112",
+                    "Préciser : inconscient mais respire",
+                    "Donner la localisation",
+                    "Suivre les instructions"
+                ]
+            },
+            {
+                "order": 5,
+                "title": "Surveiller jusqu'à l'arrivée des secours",
+                "description": "Restez avec la victime et surveillez sa respiration en permanence. Si elle cesse de respirer, placez-la sur le dos et commencez immédiatement la réanimation cardio-pulmonaire. Couvrez-la pour éviter l'hypothermie. Rassurez-la si elle reprend conscience.",
+                "media": [],
+                "keyPoints": [
+                    "Surveiller la respiration en continu",
+                    "Si arrêt respiratoire : RCP",
+                    "Couvrir la victime",
+                    "Rassurer si réveil"
+                ]
+            }
+        ],
+        "quiz": {
+            "id": "quiz-unconsciousness",
+            "courseId": "unconsciousness",
+            "passingScore": 70,
+            "questions": [
+                {
+                    "id": "q1",
+                    "question": "Comment vérifier si une personne est inconsciente?",
+                    "options": [
+                        "Lui donner une claque",
+                        "L'appeler à voix haute et tapoter ses épaules",
+                        "Lui jeter de l'eau",
+                        "Attendre qu'elle se réveille"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Il faut appeler la personne à voix haute et tapoter doucement ses épaules pour vérifier la conscience."
+                },
+                {
+                    "id": "q2",
+                    "question": "Comment vérifier la respiration d'une personne inconsciente?",
+                    "options": [
+                        "Mettre un miroir devant sa bouche",
+                        "Basculer la tête en arrière et regarder, écouter, sentir pendant 10 secondes",
+                        "Prendre son pouls",
+                        "Attendre de voir si elle bouge"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Il faut basculer la tête en arrière, puis regarder si la poitrine se soulève, écouter et sentir le souffle pendant 10 secondes."
+                },
+                {
+                    "id": "q3",
+                    "question": "Si la personne inconsciente respire, quelle position adopter?",
+                    "options": [
+                        "La laisser sur le dos",
+                        "La mettre assise",
+                        "Position latérale de sécurité (PLS)",
+                        "La mettre debout"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "Si la personne respire, il faut la placer en position latérale de sécurité pour éviter l'obstruction des voies aériennes."
+                },
+                {
+                    "id": "q4",
+                    "question": "Que faire si la personne inconsciente ne respire plus?",
+                    "options": [
+                        "Attendre les secours",
+                        "La mettre en PLS",
+                        "Commencer immédiatement la RCP",
+                        "Lui donner à boire"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "Si la personne ne respire plus, il faut immédiatement commencer la réanimation cardio-pulmonaire."
+                },
+                {
+                    "id": "q5",
+                    "question": "Faut-il laisser seule une personne inconsciente qui respire?",
+                    "options": [
+                        "Oui, pour aller chercher de l'aide",
+                        "Non, jamais",
+                        "Oui, si elle est en PLS",
+                        "Cela dépend de la situation"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Il ne faut jamais laisser seule une personne inconsciente, même si elle respire. Sa respiration peut s'arrêter à tout moment."
+                }
+            ]
+        }
+    },
+    {
+        "id": "heatstroke",
+        "title": "Coup de Chaleur",
+        "category": "Urgences Environnementales",
+        "thumbnailUrl": "assets/images/heatstroke.png",
+        "estimatedDuration": 10,
+        "difficulty": "beginner",
+        "steps": [
+            {
+                "order": 1,
+                "title": "Reconnaître un coup de chaleur",
+                "description": "Le coup de chaleur se manifeste par une température corporelle très élevée (>40°C), une peau chaude et sèche (absence de transpiration), des maux de tête violents, des nausées, une confusion, parfois des convulsions ou une perte de connaissance. C'est une urgence vitale.",
+                "media": [
+                    {
+                        "url": "assets/images/heatstroke_signs.png",
+                        "type": "image",
+                        "caption": "Signes d'un coup de chaleur"
+                    }
+                ],
+                "keyPoints": [
+                    "Température > 40°C",
+                    "Peau chaude et sèche",
+                    "Maux de tête et confusion",
+                    "Urgence vitale"
+                ]
+            },
+            {
+                "order": 2,
+                "title": "Appeler les secours immédiatement",
+                "description": "Le coup de chaleur peut être mortel. Appelez le 15 ou le 112 sans attendre. Précisez que vous suspectez un coup de chaleur. Pendant que vous attendez les secours, commencez le refroidissement de la victime.",
+                "media": [],
+                "keyPoints": [
+                    "Appeler le 15 immédiatement",
+                    "Urgence vitale",
+                    "Commencer le refroidissement",
+                    "Ne pas attendre"
+                ]
+            },
+            {
+                "order": 3,
+                "title": "Refroidir la victime rapidement",
+                "description": "Placez la personne à l'ombre ou dans un endroit frais. Retirez les vêtements superflus. Aspergez-la d'eau fraîche (pas glacée) ou enveloppez-la dans des draps humides. Créez un courant d'air avec un éventail ou un ventilateur. L'objectif est de faire baisser la température corporelle rapidement.",
+                "media": [
+                    {
+                        "url": "assets/images/cooling_victim.png",
+                        "type": "image",
+                        "caption": "Techniques de refroidissement"
+                    }
+                ],
+                "keyPoints": [
+                    "Placer à l'ombre",
+                    "Asperger d'eau fraîche",
+                    "Créer un courant d'air",
+                    "Faire baisser la température"
+                ]
+            },
+            {
+                "order": 4,
+                "title": "Hydrater si conscient",
+                "description": "Si la personne est consciente et peut boire, donnez-lui de l'eau fraîche par petites gorgées. Ne donnez jamais d'alcool ou de boissons caféinées. Si elle est inconsciente ou vomit, ne donnez rien à boire et placez-la en position latérale de sécurité.",
+                "media": [],
+                "keyPoints": [
+                    "Eau fraîche par petites gorgées",
+                    "Seulement si conscient",
+                    "Pas d'alcool ni caféine",
+                    "Si inconscient : PLS"
+                ]
+            },
+            {
+                "order": 5,
+                "title": "Surveiller l'état de la victime",
+                "description": "Continuez le refroidissement jusqu'à l'arrivée des secours. Surveillez la conscience, la respiration et la température. Si la personne perd connaissance, vérifiez sa respiration. Si elle ne respire plus, commencez la réanimation cardio-pulmonaire.",
+                "media": [],
+                "keyPoints": [
+                    "Continuer le refroidissement",
+                    "Surveiller conscience et respiration",
+                    "Si arrêt respiratoire : RCP",
+                    "Rester avec la victime"
+                ]
+            }
+        ],
+        "quiz": {
+            "id": "quiz-heatstroke",
+            "courseId": "heatstroke",
+            "passingScore": 70,
+            "questions": [
+                {
+                    "id": "q1",
+                    "question": "À partir de quelle température corporelle parle-t-on de coup de chaleur?",
+                    "options": [
+                        "37°C",
+                        "38°C",
+                        "40°C",
+                        "42°C"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "Le coup de chaleur se caractérise par une température corporelle supérieure à 40°C."
+                },
+                {
+                    "id": "q2",
+                    "question": "Quel est un signe caractéristique du coup de chaleur?",
+                    "options": [
+                        "Transpiration abondante",
+                        "Peau chaude et sèche (absence de transpiration)",
+                        "Frissons",
+                        "Peau froide"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Dans le coup de chaleur, la peau est chaude et sèche car le mécanisme de transpiration est dépassé."
+                },
+                {
+                    "id": "q3",
+                    "question": "Quelle est la première action en cas de coup de chaleur?",
+                    "options": [
+                        "Donner à boire",
+                        "Appeler le 15",
+                        "Mettre dans un bain froid",
+                        "Donner des médicaments"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Le coup de chaleur est une urgence vitale. Il faut appeler le 15 immédiatement."
+                },
+                {
+                    "id": "q4",
+                    "question": "Comment refroidir une victime de coup de chaleur?",
+                    "options": [
+                        "Bain d'eau glacée",
+                        "Asperger d'eau fraîche et créer un courant d'air",
+                        "Mettre des glaçons directement sur la peau",
+                        "Ne rien faire, attendre les secours"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Il faut asperger d'eau fraîche (pas glacée) et créer un courant d'air pour un refroidissement progressif."
+                },
+                {
+                    "id": "q5",
+                    "question": "Peut-on donner à boire à une victime de coup de chaleur?",
+                    "options": [
+                        "Oui, toujours",
+                        "Seulement si elle est consciente",
+                        "Non, jamais",
+                        "Seulement de l'eau glacée"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "On peut donner de l'eau fraîche par petites gorgées uniquement si la personne est consciente et peut avaler."
+                }
+            ]
+        }
+    },
+    {
+        "id": "vagal-syncope",
+        "title": "Malaise Vagal",
+        "category": "Malaises",
+        "thumbnailUrl": "assets/images/vagal_syncope.png",
+        "estimatedDuration": 6,
+        "difficulty": "beginner",
+        "steps": [
+            {
+                "order": 1,
+                "title": "Reconnaître un malaise vagal",
+                "description": "Le malaise vagal se manifeste par une sensation de faiblesse, des vertiges, une vision trouble, des sueurs froides, une pâleur, des nausées. La personne peut s'évanouir brièvement. C'est généralement bénin mais nécessite une prise en charge appropriée.",
+                "media": [
+                    {
+                        "url": "assets/images/vagal_signs.png",
+                        "type": "image",
+                        "caption": "Signes d'un malaise vagal"
+                    }
+                ],
+                "keyPoints": [
+                    "Sensation de faiblesse",
+                    "Vertiges et vision trouble",
+                    "Sueurs froides et pâleur",
+                    "Évanouissement possible"
+                ]
+            },
+            {
+                "order": 2,
+                "title": "Allonger la personne",
+                "description": "Dès les premiers signes, allongez la personne sur le dos. Surélevez ses jambes en les posant sur un support (chaise, sac) pour favoriser le retour du sang vers le cerveau. Si impossible de l'allonger, asseyez-la et faites-lui baisser la tête entre les genoux.",
+                "media": [
+                    {
+                        "url": "assets/images/legs_elevated.png",
+                        "type": "image",
+                        "caption": "Position avec jambes surélevées"
+                    }
+                ],
+                "keyPoints": [
+                    "Allonger sur le dos",
+                    "Surélever les jambes",
+                    "Favoriser le retour sanguin",
+                    "Alternative : tête entre les genoux"
+                ]
+            },
+            {
+                "order": 3,
+                "title": "Desserrer les vêtements",
+                "description": "Desserrez tout ce qui peut gêner la respiration ou la circulation : col, cravate, ceinture. Assurez-vous que la personne respire librement. Ouvrez une fenêtre pour aérer si vous êtes à l'intérieur.",
+                "media": [],
+                "keyPoints": [
+                    "Desserrer col et ceinture",
+                    "Faciliter la respiration",
+                    "Aérer la pièce",
+                    "Assurer le confort"
+                ]
+            },
+            {
+                "order": 4,
+                "title": "Rassurer et surveiller",
+                "description": "Parlez calmement à la personne pour la rassurer. Le malaise vagal est impressionnant mais généralement sans gravité. La récupération est rapide, en quelques minutes. Surveillez son état et ne la laissez pas se relever trop vite.",
+                "media": [],
+                "keyPoints": [
+                    "Rassurer la personne",
+                    "Récupération en quelques minutes",
+                    "Ne pas se relever trop vite",
+                    "Rester calme"
+                ]
+            },
+            {
+                "order": 5,
+                "title": "Quand consulter",
+                "description": "Appelez le 15 si : c'est le premier malaise de la personne, elle ne récupère pas après 5 minutes, elle a des douleurs thoraciques, elle est enceinte, diabétique ou cardiaque, ou si le malaise se répète. Sinon, conseillez une consultation médicale dans les jours suivants.",
+                "media": [],
+                "keyPoints": [
+                    "Appeler si premier malaise",
+                    "Appeler si non-récupération",
+                    "Attention aux personnes à risque",
+                    "Consultation recommandée"
+                ]
+            }
+        ],
+        "quiz": {
+            "id": "quiz-vagal-syncope",
+            "courseId": "vagal-syncope",
+            "passingScore": 70,
+            "questions": [
+                {
+                    "id": "q1",
+                    "question": "Qu'est-ce qu'un malaise vagal?",
+                    "options": [
+                        "Une crise cardiaque",
+                        "Une chute de tension passagère",
+                        "Un AVC",
+                        "Une crise d'épilepsie"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Le malaise vagal est une chute de tension passagère, généralement bénigne."
+                },
+                {
+                    "id": "q2",
+                    "question": "Quelle est la première action face à un malaise vagal?",
+                    "options": [
+                        "Donner à boire",
+                        "Appeler le 15",
+                        "Allonger la personne avec les jambes surélevées",
+                        "Mettre en position assise"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "Il faut allonger la personne sur le dos avec les jambes surélevées pour favoriser le retour sanguin vers le cerveau."
+                },
+                {
+                    "id": "q3",
+                    "question": "Combien de temps dure généralement un malaise vagal?",
+                    "options": [
+                        "Quelques secondes",
+                        "Quelques minutes",
+                        "Une heure",
+                        "Plusieurs heures"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "La récupération d'un malaise vagal est généralement rapide, en quelques minutes."
+                },
+                {
+                    "id": "q4",
+                    "question": "Quand faut-il appeler le 15 pour un malaise vagal?",
+                    "options": [
+                        "Toujours",
+                        "Jamais",
+                        "Si c'est le premier malaise ou si la personne ne récupère pas",
+                        "Seulement si la personne perd connaissance"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "Il faut appeler le 15 si c'est le premier malaise, si la personne ne récupère pas après 5 minutes, ou si elle a des antécédents cardiaques."
+                },
+                {
+                    "id": "q5",
+                    "question": "Que faire si la personne ne peut pas s'allonger?",
+                    "options": [
+                        "La laisser debout",
+                        "L'asseoir et lui faire baisser la tête entre les genoux",
+                        "La faire marcher",
+                        "Appeler immédiatement le 15"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Si impossible de l'allonger, il faut l'asseoir et lui faire baisser la tête entre les genoux."
+                }
+            ]
+        }
+    },
+    {
+        "id": "anaphylaxis",
+        "title": "Choc Anaphylactique",
+        "category": "Urgences Allergiques",
+        "thumbnailUrl": "assets/images/anaphylaxis.png",
+        "estimatedDuration": 10,
+        "difficulty": "intermediate",
+        "steps": [
+            {
+                "order": 1,
+                "title": "Reconnaître un choc anaphylactique",
+                "description": "Le choc anaphylactique est une réaction allergique grave et rapide. Signes : urticaire généralisée, gonflement du visage et de la gorge, difficulté à respirer, sifflement respiratoire, chute de tension, pouls rapide, nausées, angoisse. C'est une urgence vitale absolue.",
+                "media": [
+                    {
+                        "url": "assets/images/anaphylaxis_signs.png",
+                        "type": "image",
+                        "caption": "Signes d'un choc anaphylactique"
+                    }
+                ],
+                "keyPoints": [
+                    "Urticaire et gonflement",
+                    "Difficulté respiratoire",
+                    "Chute de tension",
+                    "Urgence vitale"
+                ]
+            },
+            {
+                "order": 2,
+                "title": "Appeler le 15 immédiatement",
+                "description": "Appelez le 15 ou le 112 sans délai. Précisez qu'il s'agit d'une suspicion de choc anaphylactique. Indiquez si la personne a un stylo auto-injecteur d'adrénaline. Chaque seconde compte dans cette situation.",
+                "media": [],
+                "keyPoints": [
+                    "Appeler le 15 immédiatement",
+                    "Préciser : choc anaphylactique",
+                    "Mentionner le stylo d'adrénaline",
+                    "Urgence absolue"
+                ]
+            },
+            {
+                "order": 3,
+                "title": "Utiliser le stylo auto-injecteur",
+                "description": "Si la personne possède un stylo auto-injecteur d'adrénaline (EpiPen, Anapen, Jext), utilisez-le immédiatement. Retirez le capuchon de sécurité, placez l'extrémité orange contre la cuisse (à travers les vêtements si nécessaire), appuyez fermement jusqu'au clic, maintenez 10 secondes.",
+                "media": [
+                    {
+                        "url": "assets/images/epipen_use.png",
+                        "type": "image",
+                        "caption": "Utilisation du stylo auto-injecteur"
+                    }
+                ],
+                "keyPoints": [
+                    "Retirer le capuchon",
+                    "Placer contre la cuisse",
+                    "Appuyer jusqu'au clic",
+                    "Maintenir 10 secondes"
+                ]
+            },
+            {
+                "order": 4,
+                "title": "Installer la victime",
+                "description": "Allongez la personne sur le dos avec les jambes surélevées pour maintenir la circulation sanguine. Si elle a du mal à respirer, laissez-la en position semi-assise. Si elle perd connaissance, placez-la en position latérale de sécurité. Ne la laissez jamais debout ou assise.",
+                "media": [],
+                "keyPoints": [
+                    "Allonger avec jambes surélevées",
+                    "Si dyspnée : position semi-assise",
+                    "Si inconsciente : PLS",
+                    "Ne jamais laisser debout"
+                ]
+            },
+            {
+                "order": 5,
+                "title": "Surveiller et préparer une 2e injection",
+                "description": "Surveillez constamment la respiration et la conscience. Si les symptômes ne s'améliorent pas après 5 minutes, une deuxième injection d'adrénaline peut être nécessaire (si disponible). Notez l'heure de la première injection. Restez avec la victime jusqu'à l'arrivée des secours.",
+                "media": [],
+                "keyPoints": [
+                    "Surveiller respiration et conscience",
+                    "2e injection possible après 5 min",
+                    "Noter l'heure d'injection",
+                    "Rester avec la victime"
+                ]
+            }
+        ],
+        "quiz": {
+            "id": "quiz-anaphylaxis",
+            "courseId": "anaphylaxis",
+            "passingScore": 70,
+            "questions": [
+                {
+                    "id": "q1",
+                    "question": "Qu'est-ce qu'un choc anaphylactique?",
+                    "options": [
+                        "Une allergie légère",
+                        "Une réaction allergique grave et rapide",
+                        "Une intoxication alimentaire",
+                        "Un malaise vagal"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Le choc anaphylactique est une réaction allergique grave, rapide et potentiellement mortelle."
+                },
+                {
+                    "id": "q2",
+                    "question": "Quel est le traitement d'urgence du choc anaphylactique?",
+                    "options": [
+                        "Antihistaminique oral",
+                        "Injection d'adrénaline (stylo auto-injecteur)",
+                        "Cortisone",
+                        "Aspirine"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Le traitement d'urgence est l'injection d'adrénaline avec un stylo auto-injecteur (EpiPen, Anapen, Jext)."
+                },
+                {
+                    "id": "q3",
+                    "question": "Où injecter l'adrénaline avec le stylo auto-injecteur?",
+                    "options": [
+                        "Dans le bras",
+                        "Dans la fesse",
+                        "Dans la cuisse",
+                        "Dans le ventre"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "L'adrénaline doit être injectée dans la cuisse, même à travers les vêtements si nécessaire."
+                },
+                {
+                    "id": "q4",
+                    "question": "Combien de temps maintenir le stylo après l'injection?",
+                    "options": [
+                        "2 secondes",
+                        "5 secondes",
+                        "10 secondes",
+                        "30 secondes"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "Il faut maintenir le stylo appuyé pendant 10 secondes pour que l'injection soit complète."
+                },
+                {
+                    "id": "q5",
+                    "question": "Peut-on faire une deuxième injection d'adrénaline?",
+                    "options": [
+                        "Non, jamais",
+                        "Oui, après 5 minutes si pas d'amélioration",
+                        "Oui, immédiatement",
+                        "Seulement sur ordre médical"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Une deuxième injection peut être nécessaire après 5 minutes si les symptômes ne s'améliorent pas."
+                }
+            ]
+        }
+    },
+    {
+        "id": "asthma-attack",
+        "title": "Crise d'Asthme",
+        "category": "Urgences Respiratoires",
+        "thumbnailUrl": "assets/images/asthma.png",
+        "estimatedDuration": 8,
+        "difficulty": "beginner",
+        "steps": [
+            {
+                "order": 1,
+                "title": "Reconnaître une crise d'asthme",
+                "description": "La crise d'asthme se manifeste par une difficulté à respirer, une respiration sifflante, une toux, une oppression thoracique, une respiration rapide et superficielle. La personne peut avoir du mal à parler et être angoissée. Les lèvres peuvent devenir bleutées dans les cas graves.",
+                "media": [
+                    {
+                        "url": "assets/images/asthma_signs.png",
+                        "type": "image",
+                        "caption": "Signes d'une crise d'asthme"
+                    }
+                ],
+                "keyPoints": [
+                    "Difficulté à respirer",
+                    "Respiration sifflante",
+                    "Oppression thoracique",
+                    "Angoisse et difficulté à parler"
+                ]
+            },
+            {
+                "order": 2,
+                "title": "Installer la personne",
+                "description": "Aidez la personne à s'asseoir en position confortable, légèrement penchée en avant, les bras appuyés sur une table ou les genoux. Cette position facilite la respiration. Desserrez les vêtements serrés. Ouvrez une fenêtre pour aérer. Restez calme pour ne pas augmenter son angoisse.",
+                "media": [
+                    {
+                        "url": "assets/images/asthma_position.png",
+                        "type": "image",
+                        "caption": "Position pour faciliter la respiration"
+                    }
+                ],
+                "keyPoints": [
+                    "Position assise penchée en avant",
+                    "Desserrer les vêtements",
+                    "Aérer la pièce",
+                    "Rester calme"
+                ]
+            },
+            {
+                "order": 3,
+                "title": "Aider à utiliser l'inhalateur",
+                "description": "Si la personne a son inhalateur de secours (bronchodilatateur, généralement bleu), aidez-la à l'utiliser. Agitez l'inhalateur, demandez-lui d'expirer à fond, puis d'inhaler profondément en appuyant sur l'inhalateur. Elle doit retenir sa respiration 10 secondes. Répétez après 1 minute si nécessaire.",
+                "media": [
+                    {
+                        "url": "assets/images/inhaler_use.png",
+                        "type": "image",
+                        "caption": "Utilisation de l'inhalateur"
+                    }
+                ],
+                "keyPoints": [
+                    "Agiter l'inhalateur",
+                    "Expirer puis inhaler profondément",
+                    "Retenir 10 secondes",
+                    "Répéter si nécessaire"
+                ]
+            },
+            {
+                "order": 4,
+                "title": "Surveiller l'évolution",
+                "description": "Observez si la respiration s'améliore dans les 5 à 10 minutes suivant l'utilisation de l'inhalateur. Parlez calmement à la personne pour la rassurer. Encouragez-la à respirer lentement et profondément. Ne la laissez pas seule.",
+                "media": [],
+                "keyPoints": [
+                    "Observer l'amélioration",
+                    "Rassurer la personne",
+                    "Respiration lente et profonde",
+                    "Ne pas laisser seul"
+                ]
+            },
+            {
+                "order": 5,
+                "title": "Quand appeler les secours",
+                "description": "Appelez le 15 si : c'est la première crise, l'inhalateur n'améliore pas les symptômes après 5-10 minutes, la personne ne peut plus parler, ses lèvres deviennent bleues, elle est épuisée, ou si vous avez un doute. En cas de crise grave, appelez immédiatement.",
+                "media": [],
+                "keyPoints": [
+                    "Appeler si première crise",
+                    "Appeler si pas d'amélioration",
+                    "Appeler si lèvres bleues",
+                    "En cas de doute : appeler"
+                ]
+            }
+        ],
+        "quiz": {
+            "id": "quiz-asthma-attack",
+            "courseId": "asthma-attack",
+            "passingScore": 70,
+            "questions": [
+                {
+                    "id": "q1",
+                    "question": "Quel est le signe principal d'une crise d'asthme?",
+                    "options": [
+                        "Toux sèche",
+                        "Difficulté à respirer avec sifflement",
+                        "Douleur thoracique",
+                        "Fièvre"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "La crise d'asthme se manifeste principalement par une difficulté à respirer avec une respiration sifflante."
+                },
+                {
+                    "id": "q2",
+                    "question": "Quelle position adopter pendant une crise d'asthme?",
+                    "options": [
+                        "Allongée sur le dos",
+                        "Debout",
+                        "Assise, penchée en avant",
+                        "Position latérale"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "La position assise, légèrement penchée en avant avec les bras appuyés, facilite la respiration."
+                },
+                {
+                    "id": "q3",
+                    "question": "De quelle couleur est généralement l'inhalateur de secours?",
+                    "options": [
+                        "Rouge",
+                        "Bleu",
+                        "Vert",
+                        "Orange"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "L'inhalateur de secours (bronchodilatateur) est généralement de couleur bleue."
+                },
+                {
+                    "id": "q4",
+                    "question": "Quand appeler le 15 pour une crise d'asthme?",
+                    "options": [
+                        "Pour toute crise",
+                        "Si l'inhalateur n'améliore pas les symptômes après 5-10 minutes",
+                        "Seulement si la personne perd connaissance",
+                        "Jamais, aller directement à l'hôpital"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Il faut appeler le 15 si c'est la première crise, si l'inhalateur est inefficace, ou si les lèvres deviennent bleues."
+                },
+                {
+                    "id": "q5",
+                    "question": "Que faire pour aider une personne en crise d'asthme?",
+                    "options": [
+                        "La faire courir",
+                        "Rester calme, l'aider à utiliser son inhalateur",
+                        "Lui donner à boire",
+                        "La faire allonger"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Il faut rester calme pour ne pas augmenter son angoisse et l'aider à utiliser correctement son inhalateur."
+                }
+            ]
+        }
+    },
+    {
+        "id": "severe-bleeding",
+        "title": "Hémorragie Grave",
+        "category": "Traumatismes",
+        "thumbnailUrl": "assets/images/bleeding.png",
+        "estimatedDuration": 10,
+        "difficulty": "intermediate",
+        "steps": [
+            {
+                "order": 1,
+                "title": "Reconnaître une hémorragie grave",
+                "description": "Une hémorragie est grave si le sang coule abondamment et de façon continue, si la plaie est large ou profonde, ou si elle touche une artère (sang rouge vif qui jaillit par saccades). La victime peut présenter des signes de choc : pâleur, sueurs froides, pouls rapide, angoisse.",
+                "media": [
+                    {
+                        "url": "assets/images/bleeding_signs.png",
+                        "type": "image",
+                        "caption": "Signes d'une hémorragie grave"
+                    }
+                ],
+                "keyPoints": [
+                    "Saignement abondant et continu",
+                    "Plaie large ou profonde",
+                    "Sang artériel (rouge vif)",
+                    "Signes de choc possibles"
+                ]
+            },
+            {
+                "order": 2,
+                "title": "Appeler les secours",
+                "description": "Appelez immédiatement le 15 ou le 112. Une hémorragie grave peut être mortelle en quelques minutes. Si vous n'êtes pas seul, demandez à quelqu'un d'appeler pendant que vous commencez les gestes de secours. Précisez la localisation et l'importance du saignement.",
+                "media": [],
+                "keyPoints": [
+                    "Appeler le 15 immédiatement",
+                    "Urgence vitale",
+                    "Décrire le saignement",
+                    "Agir vite"
+                ]
+            },
+            {
+                "order": 3,
+                "title": "Comprimer la plaie",
+                "description": "Protégez-vous avec des gants si disponibles. Comprimez directement la plaie avec vos mains, en utilisant un linge propre ou une compresse. Appuyez fermement et sans relâcher. Si le sang traverse, ajoutez d'autres compresses par-dessus sans retirer les premières. Maintenez la compression jusqu'à l'arrivée des secours.",
+                "media": [
+                    {
+                        "url": "assets/images/direct_pressure.png",
+                        "type": "image",
+                        "caption": "Compression directe de la plaie"
+                    }
+                ],
+                "keyPoints": [
+                    "Compression directe et ferme",
+                    "Ne pas relâcher",
+                    "Ajouter des compresses si nécessaire",
+                    "Maintenir jusqu'aux secours"
+                ]
+            },
+            {
+                "order": 4,
+                "title": "Allonger la victime",
+                "description": "Allongez la victime sur le dos pour prévenir le choc. Si possible, surélevez le membre qui saigne au-dessus du niveau du cœur (sauf en cas de fracture). Couvrez la victime pour éviter l'hypothermie. Rassurez-la et parlez-lui calmement.",
+                "media": [],
+                "keyPoints": [
+                    "Allonger la victime",
+                    "Surélever le membre si possible",
+                    "Couvrir pour éviter l'hypothermie",
+                    "Rassurer"
+                ]
+            },
+            {
+                "order": 5,
+                "title": "Surveiller l'état de la victime",
+                "description": "Surveillez la conscience, la respiration et le pouls. Si la victime perd connaissance mais respire, placez-la en position latérale de sécurité tout en maintenant la compression. Si elle ne respire plus, commencez la réanimation cardio-pulmonaire. Ne donnez rien à boire.",
+                "media": [],
+                "keyPoints": [
+                    "Surveiller conscience et respiration",
+                    "Si inconsciente : PLS + compression",
+                    "Si arrêt respiratoire : RCP",
+                    "Rien à boire"
+                ]
+            }
+        ],
+        "quiz": {
+            "id": "quiz-severe-bleeding",
+            "courseId": "severe-bleeding",
+            "passingScore": 70,
+            "questions": [
+                {
+                    "id": "q1",
+                    "question": "Quelle est la première action face à une hémorragie grave?",
+                    "options": [
+                        "Nettoyer la plaie",
+                        "Comprimer directement la plaie",
+                        "Faire un garrot",
+                        "Désinfecter"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Il faut immédiatement comprimer directement la plaie avec les mains pour arrêter le saignement."
+                },
+                {
+                    "id": "q2",
+                    "question": "Que faire si le sang traverse les premières compresses?",
+                    "options": [
+                        "Retirer les compresses et en mettre de nouvelles",
+                        "Ajouter d'autres compresses par-dessus",
+                        "Faire un garrot",
+                        "Arrêter la compression"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Il faut ajouter d'autres compresses par-dessus sans retirer les premières et continuer la compression."
+                },
+                {
+                    "id": "q3",
+                    "question": "Dans quelle position placer une victime d'hémorragie?",
+                    "options": [
+                        "Debout",
+                        "Assise",
+                        "Allongée sur le dos",
+                        "Position latérale"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "Il faut allonger la victime sur le dos pour prévenir le choc et surélever le membre qui saigne si possible."
+                },
+                {
+                    "id": "q4",
+                    "question": "Faut-il relâcher la compression pour vérifier si le saignement s'est arrêté?",
+                    "options": [
+                        "Oui, toutes les minutes",
+                        "Oui, toutes les 5 minutes",
+                        "Non, maintenir la compression jusqu'aux secours",
+                        "Oui, après 10 minutes"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "Il ne faut jamais relâcher la compression. Elle doit être maintenue jusqu'à l'arrivée des secours."
+                },
+                {
+                    "id": "q5",
+                    "question": "Peut-on donner à boire à une victime d'hémorragie?",
+                    "options": [
+                        "Oui, de l'eau",
+                        "Oui, une boisson sucrée",
+                        "Non, rien à boire",
+                        "Seulement si elle a soif"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "Il ne faut rien donner à boire à une victime d'hémorragie."
+                }
+            ]
+        }
+    },
+    {
+        "id": "hypothermia",
+        "title": "Hypothermie",
+        "category": "Urgences Environnementales",
+        "thumbnailUrl": "assets/images/hypothermia.png",
+        "estimatedDuration": 10,
+        "difficulty": "intermediate",
+        "steps": [
+            {
+                "order": 1,
+                "title": "Reconnaître l'hypothermie",
+                "description": "L'hypothermie survient quand la température corporelle descend sous 35°C. Signes : frissons intenses, peau froide et pâle, confusion, somnolence, ralentissement des mouvements, difficulté à parler. Dans les cas graves : arrêt des frissons, rigidité musculaire, perte de conscience.",
+                "media": [
+                    {
+                        "url": "assets/images/hypothermia_signs.png",
+                        "type": "image",
+                        "caption": "Signes d'hypothermie"
+                    }
+                ],
+                "keyPoints": [
+                    "Température < 35°C",
+                    "Frissons et peau froide",
+                    "Confusion et somnolence",
+                    "Cas grave : perte de conscience"
+                ]
+            },
+            {
+                "order": 2,
+                "title": "Appeler les secours",
+                "description": "Appelez le 15 ou le 112, surtout si l'hypothermie est modérée à sévère. L'hypothermie peut être mortelle et nécessite souvent une prise en charge hospitalière. Précisez les circonstances (exposition au froid, immersion) et l'état de la victime.",
+                "media": [],
+                "keyPoints": [
+                    "Appeler le 15",
+                    "Préciser les circonstances",
+                    "Décrire l'état de la victime",
+                    "Urgence si hypothermie sévère"
+                ]
+            },
+            {
+                "order": 3,
+                "title": "Mettre la victime à l'abri",
+                "description": "Déplacez la personne dans un endroit chaud et sec. Manipulez-la avec précaution car les mouvements brusques peuvent provoquer un arrêt cardiaque en cas d'hypothermie sévère. Retirez les vêtements mouillés et remplacez-les par des vêtements secs et chauds.",
+                "media": [
+                    {
+                        "url": "assets/images/warming_victim.png",
+                        "type": "image",
+                        "caption": "Mise à l'abri et réchauffement"
+                    }
+                ],
+                "keyPoints": [
+                    "Mettre à l'abri du froid",
+                    "Manipuler avec précaution",
+                    "Retirer vêtements mouillés",
+                    "Habiller avec vêtements secs"
+                ]
+            },
+            {
+                "order": 4,
+                "title": "Réchauffer progressivement",
+                "description": "Enveloppez la personne dans des couvertures, en isolant aussi le sol. Couvrez la tête (importante perte de chaleur). Réchauffez progressivement, jamais brutalement. Ne frottez pas la peau. Vous pouvez placer des bouillottes tièdes (pas chaudes) sur le thorax, l'abdomen et le cou, protégées par un linge.",
+                "media": [],
+                "keyPoints": [
+                    "Envelopper dans des couvertures",
+                    "Couvrir la tête",
+                    "Réchauffement progressif",
+                    "Ne pas frotter la peau"
+                ]
+            },
+            {
+                "order": 5,
+                "title": "Surveiller et donner à boire",
+                "description": "Si la personne est consciente et peut avaler, donnez-lui une boisson chaude sucrée (pas d'alcool). Surveillez la conscience et la respiration. Si elle perd connaissance, vérifiez la respiration et placez-la en PLS si elle respire. Si elle ne respire plus, commencez la RCP avec précaution.",
+                "media": [],
+                "keyPoints": [
+                    "Boisson chaude sucrée si conscient",
+                    "Pas d'alcool",
+                    "Surveiller conscience et respiration",
+                    "Si inconsciente : PLS ou RCP"
+                ]
+            }
+        ],
+        "quiz": {
+            "id": "quiz-hypothermia",
+            "courseId": "hypothermia",
+            "passingScore": 70,
+            "questions": [
+                {
+                    "id": "q1",
+                    "question": "À partir de quelle température parle-t-on d'hypothermie?",
+                    "options": [
+                        "Moins de 37°C",
+                        "Moins de 36°C",
+                        "Moins de 35°C",
+                        "Moins de 30°C"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "L'hypothermie commence quand la température corporelle descend en dessous de 35°C."
+                },
+                {
+                    "id": "q2",
+                    "question": "Quel est un signe d'hypothermie sévère?",
+                    "options": [
+                        "Frissons intenses",
+                        "Arrêt des frissons et rigidité musculaire",
+                        "Transpiration",
+                        "Rougeur de la peau"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Dans l'hypothermie sévère, les frissons s'arrêtent et la personne devient rigide. C'est un signe de gravité."
+                },
+                {
+                    "id": "q3",
+                    "question": "Comment réchauffer une victime d'hypothermie?",
+                    "options": [
+                        "Bain chaud immédiat",
+                        "Frotter vigoureusement la peau",
+                        "Réchauffement progressif avec couvertures",
+                        "Lui faire faire de l'exercice"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "Le réchauffement doit être progressif avec des couvertures. Jamais de réchauffement brutal."
+                },
+                {
+                    "id": "q4",
+                    "question": "Pourquoi faut-il manipuler avec précaution une victime d'hypothermie sévère?",
+                    "options": [
+                        "Pour ne pas lui faire mal",
+                        "Les mouvements brusques peuvent provoquer un arrêt cardiaque",
+                        "Pour ne pas la réveiller",
+                        "Ce n'est pas nécessaire"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "En cas d'hypothermie sévère, les mouvements brusques peuvent déclencher un arrêt cardiaque."
+                },
+                {
+                    "id": "q5",
+                    "question": "Peut-on donner de l'alcool à une victime d'hypothermie?",
+                    "options": [
+                        "Oui, pour réchauffer",
+                        "Oui, un peu",
+                        "Non, jamais",
+                        "Seulement si elle est consciente"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "Il ne faut jamais donner d'alcool. On peut donner une boisson chaude sucrée si la personne est consciente."
+                }
+            ]
+        }
     }
 ]
