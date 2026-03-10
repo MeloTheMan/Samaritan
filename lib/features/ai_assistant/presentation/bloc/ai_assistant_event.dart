@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import '../../domain/entities/symptoms.dart';
 
 abstract class AIAssistantEvent extends Equatable {
   const AIAssistantEvent();
@@ -15,15 +14,6 @@ class SendMessage extends AIAssistantEvent {
 
   @override
   List<Object?> get props => [message];
-}
-
-class AnalyzeSymptoms extends AIAssistantEvent {
-  final Symptoms symptoms;
-
-  const AnalyzeSymptoms(this.symptoms);
-
-  @override
-  List<Object?> get props => [symptoms];
 }
 
 class ClearConversation extends AIAssistantEvent {

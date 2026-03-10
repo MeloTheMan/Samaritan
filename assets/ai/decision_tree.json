@@ -1,0 +1,517 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-03-05",
+  "rules": [
+    {
+      "id": "rule-001",
+      "name": "Arrêt Cardiaque",
+      "urgency": "critique",
+      "conditions": {
+        "type": "AND",
+        "rules": [
+          {
+            "field": "consciousness",
+            "operator": "equals",
+            "value": "inconscient"
+          },
+          {
+            "field": "breathing",
+            "operator": "equals",
+            "value": "absente"
+          }
+        ]
+      },
+      "baseScore": 95,
+      "description": "Arrêt cardiaque - Absence de conscience et de respiration",
+      "actions": [
+        "🚨 APPELER LE 15 (SAMU) IMMÉDIATEMENT",
+        "Allonger la victime sur une surface dure",
+        "Commencer la RCP: 30 compressions thoraciques puis 2 insufflations",
+        "Continuer jusqu'à l'arrivée des secours"
+      ],
+      "warnings": [
+        "Ne jamais abandonner la RCP",
+        "Chaque seconde compte"
+      ],
+      "courseId": "cardiac-arrest"
+    },
+    {
+      "id": "rule-002",
+      "name": "Hypothermie Sévère",
+      "urgency": "critique",
+      "conditions": {
+        "type": "AND",
+        "rules": [
+          {
+            "field": "bodyTemperature",
+            "operator": "lessThan",
+            "value": 32
+          }
+        ]
+      },
+      "baseScore": 90,
+      "description": "Hypothermie sévère - Température corporelle dangereusement basse",
+      "actions": [
+        "🚨 APPELER LE 15 IMMÉDIATEMENT",
+        "Mettre à l'abri du froid",
+        "Retirer les vêtements mouillés",
+        "Envelopper dans des couvertures sèches",
+        "Réchauffer PROGRESSIVEMENT (jamais brutalement)"
+      ],
+      "warnings": [
+        "Ne jamais frotter la peau",
+        "Pas d'alcool",
+        "Manipuler avec précaution"
+      ],
+      "courseId": "hypothermia"
+    },
+    {
+      "id": "rule-003",
+      "name": "Coup de Chaleur",
+      "urgency": "critique",
+      "conditions": {
+        "type": "AND",
+        "rules": [
+          {
+            "field": "bodyTemperature",
+            "operator": "greaterThan",
+            "value": 40
+          },
+          {
+            "type": "OR",
+            "rules": [
+              {
+                "field": "consciousness",
+                "operator": "equals",
+                "value": "confus"
+              },
+              {
+                "field": "hasVomiting",
+                "operator": "equals",
+                "value": true
+              }
+            ]
+          }
+        ]
+      },
+      "baseScore": 85,
+      "description": "Coup de chaleur - Hyperthermie sévère avec troubles",
+      "actions": [
+        "🚨 APPELER LE 15",
+        "Placer à l'ombre ou dans un endroit frais",
+        "Asperger d'eau fraîche (pas glacée)",
+        "Créer un courant d'air",
+        "Donner de l'eau si conscient"
+      ],
+      "warnings": [
+        "Ne pas utiliser d'eau glacée",
+        "Surveiller la conscience"
+      ],
+      "courseId": "heatstroke"
+    },
+    {
+      "id": "rule-004",
+      "name": "Hémorragie Sévère",
+      "urgency": "critique",
+      "conditions": {
+        "type": "AND",
+        "rules": [
+          {
+            "field": "hasBleeding",
+            "operator": "equals",
+            "value": true
+          },
+          {
+            "field": "bleedingSeverity",
+            "operator": "in",
+            "value": ["sévère", "artériel"]
+          }
+        ]
+      },
+      "baseScore": 90,
+      "description": "Hémorragie grave nécessitant compression immédiate",
+      "actions": [
+        "🚨 APPELER LE 15",
+        "Comprimer DIRECTEMENT la plaie avec les mains",
+        "Ne JAMAIS relâcher la compression",
+        "Allonger la victime",
+        "Surélever le membre si possible"
+      ],
+      "warnings": [
+        "Ne jamais retirer les premières compresses",
+        "Maintenir la compression jusqu'aux secours"
+      ],
+      "courseId": "severe-bleeding"
+    },
+    {
+      "id": "rule-005",
+      "name": "Choc Anaphylactique",
+      "urgency": "critique",
+      "conditions": {
+        "type": "AND",
+        "rules": [
+          {
+            "field": "hasSwelling",
+            "operator": "equals",
+            "value": true
+          },
+          {
+            "field": "swellingLocation",
+            "operator": "in",
+            "value": ["gorge", "langue", "généralisé"]
+          },
+          {
+            "field": "breathing",
+            "operator": "equals",
+            "value": "difficile"
+          }
+        ]
+      },
+      "baseScore": 90,
+      "description": "Réaction allergique grave avec gonflement et difficulté respiratoire",
+      "actions": [
+        "🚨 APPELER LE 15 IMMÉDIATEMENT",
+        "Utiliser le stylo auto-injecteur d'adrénaline si disponible",
+        "Allonger avec jambes surélevées",
+        "Surveiller la respiration en continu"
+      ],
+      "warnings": [
+        "Ne jamais laisser debout ou assis",
+        "Chaque minute compte"
+      ],
+      "courseId": "anaphylaxis"
+    },
+    {
+      "id": "rule-006",
+      "name": "Infarctus Possible",
+      "urgency": "critique",
+      "conditions": {
+        "type": "AND",
+        "rules": [
+          {
+            "field": "hasChestPain",
+            "operator": "equals",
+            "value": true
+          },
+          {
+            "type": "OR",
+            "rules": [
+              {
+                "field": "isPale",
+                "operator": "equals",
+                "value": true
+              },
+              {
+                "field": "hasColdSweats",
+                "operator": "equals",
+                "value": true
+              }
+            ]
+          }
+        ]
+      },
+      "baseScore": 85,
+      "description": "Douleur thoracique avec signes de gravité",
+      "actions": [
+        "🚨 APPELER LE 15 IMMÉDIATEMENT",
+        "Mettre au repos en position semi-assise",
+        "Desserrer les vêtements",
+        "Rassurer la personne",
+        "Ne rien donner à manger ou boire"
+      ],
+      "warnings": [
+        "Ne jamais minimiser une douleur thoracique",
+        "Chaque minute compte"
+      ],
+      "courseId": "heart-attack"
+    },
+    {
+      "id": "rule-007",
+      "name": "Détresse Respiratoire",
+      "urgency": "urgent",
+      "conditions": {
+        "type": "AND",
+        "rules": [
+          {
+            "field": "breathing",
+            "operator": "in",
+            "value": ["difficile", "sifflante"]
+          },
+          {
+            "type": "OR",
+            "rules": [
+              {
+                "field": "hasCyanosis",
+                "operator": "equals",
+                "value": true
+              },
+              {
+                "field": "speech",
+                "operator": "equals",
+                "value": "impossible"
+              }
+            ]
+          }
+        ]
+      },
+      "baseScore": 80,
+      "description": "Difficulté respiratoire sévère",
+      "actions": [
+        "⚠️ APPELER LE 15",
+        "Position assise, penché en avant",
+        "Ouvrir les fenêtres",
+        "Desserrer les vêtements",
+        "Rassurer et calmer"
+      ],
+      "warnings": [
+        "Ne pas allonger",
+        "Surveiller l'aggravation"
+      ],
+      "courseId": "respiratory-distress"
+    },
+    {
+      "id": "rule-008",
+      "name": "Hypothermie Modérée",
+      "urgency": "urgent",
+      "conditions": {
+        "type": "AND",
+        "rules": [
+          {
+            "field": "bodyTemperature",
+            "operator": "between",
+            "value": { "min": 32, "max": 35 }
+          }
+        ]
+      },
+      "baseScore": 75,
+      "description": "Hypothermie modérée nécessitant réchauffement",
+      "actions": [
+        "⚠️ APPELER LE 15",
+        "Mettre à l'abri du froid",
+        "Retirer vêtements mouillés",
+        "Envelopper dans couvertures sèches",
+        "Donner boisson chaude sucrée si conscient"
+      ],
+      "warnings": [
+        "Réchauffement progressif uniquement"
+      ],
+      "courseId": "hypothermia"
+    },
+    {
+      "id": "rule-009",
+      "name": "Fièvre Élevée",
+      "urgency": "urgent",
+      "conditions": {
+        "type": "AND",
+        "rules": [
+          {
+            "field": "bodyTemperature",
+            "operator": "greaterThan",
+            "value": 39.5
+          }
+        ]
+      },
+      "baseScore": 70,
+      "description": "Fièvre élevée nécessitant surveillance",
+      "actions": [
+        "⏰ Consulter rapidement un médecin",
+        "Prendre du paracétamol (1g)",
+        "Boire beaucoup d'eau",
+        "Se découvrir légèrement",
+        "Surveiller la température"
+      ],
+      "warnings": [
+        "Appeler le 15 si convulsions",
+        "Appeler le 15 si confusion"
+      ],
+      "courseId": null
+    },
+    {
+      "id": "rule-010",
+      "name": "Syndrome Grippal",
+      "urgency": "modéré",
+      "conditions": {
+        "type": "AND",
+        "rules": [
+          {
+            "field": "bodyTemperature",
+            "operator": "between",
+            "value": { "min": 38, "max": 39.5 }
+          },
+          {
+            "field": "hasHeadache",
+            "operator": "equals",
+            "value": true
+          }
+        ]
+      },
+      "baseScore": 65,
+      "description": "Fièvre avec maux de tête, possiblement viral",
+      "actions": [
+        "Repos et hydratation",
+        "Paracétamol si besoin",
+        "Surveiller l'évolution",
+        "Consulter si persistance > 3 jours"
+      ],
+      "warnings": [
+        "Consulter si difficulté à respirer"
+      ],
+      "courseId": null
+    },
+    {
+      "id": "rule-011",
+      "name": "Douleur Thoracique Simple",
+      "urgency": "modéré",
+      "conditions": {
+        "type": "AND",
+        "rules": [
+          {
+            "field": "hasChestPain",
+            "operator": "equals",
+            "value": true
+          }
+        ]
+      },
+      "baseScore": 60,
+      "description": "Douleur à la poitrine nécessitant évaluation",
+      "actions": [
+        "⏰ Consulter un médecin rapidement",
+        "Se mettre au repos",
+        "Noter les caractéristiques de la douleur",
+        "Appeler le 15 si aggravation"
+      ],
+      "warnings": [
+        "Ne pas minimiser",
+        "Appeler le 15 si pâleur ou sueurs"
+      ],
+      "courseId": null
+    },
+    {
+      "id": "rule-012",
+      "name": "Céphalée",
+      "urgency": "routine",
+      "conditions": {
+        "type": "AND",
+        "rules": [
+          {
+            "field": "hasHeadache",
+            "operator": "equals",
+            "value": true
+          }
+        ]
+      },
+      "baseScore": 50,
+      "description": "Mal de tête",
+      "actions": [
+        "Repos dans le calme et l'obscurité",
+        "Paracétamol si besoin",
+        "Boire de l'eau",
+        "Consulter si inhabituel ou très intense"
+      ],
+      "warnings": [
+        "Appeler le 15 si fièvre élevée ou raideur de nuque"
+      ],
+      "courseId": null
+    },
+    {
+      "id": "rule-013",
+      "name": "Troubles Digestifs",
+      "urgency": "routine",
+      "conditions": {
+        "type": "OR",
+        "rules": [
+          {
+            "field": "hasNausea",
+            "operator": "equals",
+            "value": true
+          },
+          {
+            "field": "hasVomiting",
+            "operator": "equals",
+            "value": true
+          },
+          {
+            "field": "hasAbdominalPain",
+            "operator": "equals",
+            "value": true
+          }
+        ]
+      },
+      "baseScore": 50,
+      "description": "Nausées, vomissements ou douleur abdominale",
+      "actions": [
+        "Arrêter de manger temporairement",
+        "Boire de l'eau par petites gorgées",
+        "Se reposer",
+        "Consulter si persistance > 24h"
+      ],
+      "warnings": [
+        "Consulter si sang dans vomissements",
+        "Appeler le 15 si douleur intense et brutale"
+      ],
+      "courseId": null
+    },
+    {
+      "id": "rule-014",
+      "name": "Vertiges",
+      "urgency": "routine",
+      "conditions": {
+        "type": "AND",
+        "rules": [
+          {
+            "field": "hasDizziness",
+            "operator": "equals",
+            "value": true
+          }
+        ]
+      },
+      "baseScore": 50,
+      "description": "Sensation de vertige ou étourdissement",
+      "actions": [
+        "S'asseoir ou s'allonger immédiatement",
+        "Fixer un point stable",
+        "Respirer calmement",
+        "Boire de l'eau"
+      ],
+      "warnings": [
+        "Appeler le 15 si perte de conscience",
+        "Consulter si persistant"
+      ],
+      "courseId": null
+    },
+    {
+      "id": "rule-015",
+      "name": "Brûlure Grave",
+      "urgency": "urgent",
+      "conditions": {
+        "type": "AND",
+        "rules": [
+          {
+            "field": "hasBurn",
+            "operator": "equals",
+            "value": true
+          },
+          {
+            "field": "burnDegree",
+            "operator": "in",
+            "value": ["2ème", "3ème"]
+          }
+        ]
+      },
+      "baseScore": 75,
+      "description": "Brûlure sévère avec cloques ou profonde",
+      "actions": [
+        "⚠️ APPELER LE 15",
+        "Refroidir à l'eau tiède (15-25°C) pendant 10-20 min",
+        "Ne rien appliquer sur la brûlure",
+        "Couvrir avec un linge propre",
+        "Ne pas percer les cloques"
+      ],
+      "warnings": [
+        "Pas de glace",
+        "Pas de corps gras"
+      ],
+      "courseId": "burns"
+    }
+  ]
+}

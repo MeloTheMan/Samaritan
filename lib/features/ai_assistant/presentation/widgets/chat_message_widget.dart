@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import '../../domain/entities/diagnosis.dart';
 import '../bloc/ai_assistant_state.dart';
 import 'diagnosis_card_widget.dart';
 
@@ -15,7 +14,7 @@ class ChatMessageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print('🟢 [ChatMessageWidget] Affichage message: isUser=${message.isUser}, content="${message.content.substring(0, message.content.length > 50 ? 50 : message.content.length)}..."');
-    print('🟢 [ChatMessageWidget] Diagnoses: ${message.diagnoses?.length ?? 0}, Questions: ${message.suggestedQuestions?.length ?? 0}');
+    print('🟢 [ChatMessageWidget] Diagnostics: ${message.diagnostics?.length ?? 0}, Questions: ${message.suggestedQuestions?.length ?? 0}');
     
     return Padding(
       padding: const EdgeInsets.only(bottom: 16.0),
@@ -69,11 +68,11 @@ class ChatMessageWidget extends StatelessWidget {
                 ),
                 
                 // Afficher les diagnostics si présents
-                if (message.diagnoses != null && message.diagnoses!.isNotEmpty) ...[
+                if (message.diagnostics != null && message.diagnostics!.isNotEmpty) ...[
                   const SizedBox(height: 12),
-                  ...message.diagnoses!.map((diagnosis) => Padding(
+                  ...message.diagnostics!.map((diagnostic) => Padding(
                         padding: const EdgeInsets.only(bottom: 8.0),
-                        child: DiagnosisCardWidget(diagnosis: diagnosis),
+                        child: DiagnosisCardWidget(diagnostic: diagnostic),
                       )),
                 ],
                 

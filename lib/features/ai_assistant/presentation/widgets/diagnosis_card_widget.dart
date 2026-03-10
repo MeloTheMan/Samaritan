@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import '../../domain/entities/diagnosis.dart';
+import '../../domain/entities/diagnostic_result.dart';
 
 class DiagnosisCardWidget extends StatelessWidget {
-  final Diagnosis diagnosis;
+  final DiagnosticResult diagnostic;
 
   const DiagnosisCardWidget({
     super.key,
-    required this.diagnosis,
+    required this.diagnostic,
   });
 
   @override
@@ -23,7 +23,7 @@ class DiagnosisCardWidget extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    diagnosis.condition,
+                    diagnostic.name,
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
@@ -44,7 +44,7 @@ class DiagnosisCardWidget extends StatelessWidget {
                 ),
                 const SizedBox(width: 4),
                 Text(
-                  'Confiance: ${diagnosis.confidence}%',
+                  'Confiance: ${diagnostic.confidenceScore}%',
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
               ],
@@ -54,18 +54,18 @@ class DiagnosisCardWidget extends StatelessWidget {
             
             // Description
             Text(
-              diagnosis.description,
+              diagnostic.description,
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             
             // Actions
-            if (diagnosis.actions.isNotEmpty) ...[
+            if (diagnostic.recommendedActions.isNotEmpty) ...[
               const SizedBox(height: 16),
-              ...diagnosis.actions.map((action) => _buildAction(context, action)),
+              ...diagnostic.recommendedActions.map((action) => _buildAction(context, action)),
             ],
             
             // Avertissements
-            if (diagnosis.warnings.isNotEmpty) ...[
+            if (diagnostic.warnings.isNotEmpty) ...[
               const SizedBox(height: 16),
               Container(
                 padding: const EdgeInsets.all(12),
@@ -94,7 +94,7 @@ class DiagnosisCardWidget extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 8),
-                    ...diagnosis.warnings.map((warning) => Padding(
+                    ...diagnostic.warnings.map((warning) => Padding(
                           padding: const EdgeInsets.only(bottom: 4.0),
                           child: Text(
                             '• $warning',
@@ -109,7 +109,7 @@ class DiagnosisCardWidget extends StatelessWidget {
             ],
             
             // Lien vers cours
-            if (diagnosis.relatedCourseId != null) ...[
+            if (diagnostic.relatedCourseId != null) ...[
               const SizedBox(height: 12),
               TextButton.icon(
                 onPressed: () {
@@ -129,28 +129,38 @@ class DiagnosisCardWidget extends StatelessWidget {
     Color backgroundColor;
     Color textColor;
     IconData icon;
+    String urgencyText;
 
-    switch (diagnosis.urgency) {
-      case UrgencyLevel.immediate:
+    switch (diagnostic.urgencyLevel) {
+      case 'critique':
         backgroundColor = Colors.red;
         textColor = Colors.white;
         icon = Icons.emergency;
+        urgencyText = 'CRITIQUE';
         break;
-      case UrgencyLevel.urgent:
+      case 'urgent':
         backgroundColor = Colors.orange;
         textColor = Colors.white;
         icon = Icons.warning;
+        urgencyText = 'URGENT';
         break;
-      case UrgencyLevel.moderate:
+      case 'modéré':
         backgroundColor = Colors.blue;
         textColor = Colors.white;
         icon = Icons.info;
+        urgencyText = 'MODÉRÉ';
         break;
-      case UrgencyLevel.routine:
+      case 'routine':
         backgroundColor = Colors.green;
         textColor = Colors.white;
         icon = Icons.check_circle;
+        urgencyText = 'ROUTINE';
         break;
+      default:
+        backgroundColor = Colors.grey;
+        textColor = Colors.white;
+        icon = Icons.help;
+        urgencyText = 'INCONNU';
     }
 
     return Container(
@@ -165,7 +175,7 @@ class DiagnosisCardWidget extends StatelessWidget {
           Icon(icon, size: 16, color: textColor),
           const SizedBox(width: 4),
           Text(
-            diagnosis.urgency.name.toUpperCase(),
+            urgencyText,
             style: TextStyle(
               color: textColor,
               fontWeight: FontWeight.bold,
@@ -177,8 +187,9 @@ class DiagnosisCardWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildAction(BuildContext context, DiagnosisAction action) {
-    if (action.type == ActionType.emergency_call) {
+  Widget _buildAction(BuildContext context, String action) {
+    // Détecter si c'est un appel d'urgence
+    if (action.toLowerCase().contains('appeler') || action.contains('15') || action.contains('112')) {
       return Container(
         margin: const EdgeInsets.only(bottom: 12),
         padding: const EdgeInsets.all(12),
@@ -193,89 +204,44 @@ class DiagnosisCardWidget extends StatelessWidget {
             const SizedBox(width: 12),
             Expanded(
               child: Text(
-                action.message ?? 'Appeler les secours',
+                action,
                 style: const TextStyle(
                   color: Colors.red,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
-            ElevatedButton(
-              onPressed: () {
-                // TODO: Appeler le 15
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red,
-                foregroundColor: Colors.white,
-              ),
-              child: const Text('Appeler 15'),
-            ),
           ],
         ),
       );
     }
 
-    if (action.type == ActionType.protocol && action.steps != null) {
-      return Container(
-        margin: const EdgeInsets.only(bottom: 12),
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.primaryContainer,
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              action.title ?? 'Protocole',
+    // Action normale
+    return Container(
+      margin: const EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.primaryContainer,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Row(
+        children: [
+          Icon(
+            Icons.check_circle,
+            color: Theme.of(context).colorScheme.onPrimaryContainer,
+            size: 16,
+          ),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Text(
+              action,
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onPrimaryContainer,
-                fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 8),
-            ...action.steps!.asMap().entries.map((entry) {
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 4.0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: 24,
-                      height: 24,
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.primary,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Center(
-                        child: Text(
-                          '${entry.key + 1}',
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.onPrimary,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 12,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: Text(
-                        entry.value,
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.onPrimaryContainer,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            }),
-          ],
-        ),
-      );
-    }
-
-    return const SizedBox.shrink();
+          ),
+        ],
+      ),
+    );
   }
 }

@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import '../../domain/entities/diagnosis.dart';
+import '../../domain/entities/diagnostic_result.dart';
 
 abstract class AIAssistantState extends Equatable {
   const AIAssistantState();
@@ -18,23 +18,23 @@ class AIAssistantLoading extends AIAssistantState {
 
 class AIAssistantLoaded extends AIAssistantState {
   final List<ChatMessage> messages;
-  final List<Diagnosis>? currentDiagnoses;
+  final List<DiagnosticResult>? currentDiagnostics;
 
   const AIAssistantLoaded({
     required this.messages,
-    this.currentDiagnoses,
+    this.currentDiagnostics,
   });
 
   @override
-  List<Object?> get props => [messages, currentDiagnoses];
+  List<Object?> get props => [messages, currentDiagnostics];
 
   AIAssistantLoaded copyWith({
     List<ChatMessage>? messages,
-    List<Diagnosis>? currentDiagnoses,
+    List<DiagnosticResult>? currentDiagnostics,
   }) {
     return AIAssistantLoaded(
       messages: messages ?? this.messages,
-      currentDiagnoses: currentDiagnoses ?? this.currentDiagnoses,
+      currentDiagnostics: currentDiagnostics ?? this.currentDiagnostics,
     );
   }
 }
@@ -54,7 +54,7 @@ class ChatMessage extends Equatable {
   final String content;
   final bool isUser;
   final DateTime timestamp;
-  final List<Diagnosis>? diagnoses;
+  final List<DiagnosticResult>? diagnostics;
   final List<String>? suggestedQuestions;
 
   const ChatMessage({
@@ -62,10 +62,10 @@ class ChatMessage extends Equatable {
     required this.content,
     required this.isUser,
     required this.timestamp,
-    this.diagnoses,
+    this.diagnostics,
     this.suggestedQuestions,
   });
 
   @override
-  List<Object?> get props => [id, content, isUser, timestamp, diagnoses, suggestedQuestions];
+  List<Object?> get props => [id, content, isUser, timestamp, diagnostics, suggestedQuestions];
 }
