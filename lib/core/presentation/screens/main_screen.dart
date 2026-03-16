@@ -7,6 +7,7 @@ import '../../../features/alert/presentation/bloc/alert_event.dart';
 import '../../../features/alert/presentation/bloc/alert_state.dart';
 import '../../../features/alert/domain/entities/emergency_alert.dart';
 import '../../../features/alert/presentation/screens/alert_notification_screen.dart';
+import '../../../features/alert/presentation/screens/demo_alert_screen.dart';
 import '../../../features/take_charge/presentation/bloc/intervention_bloc.dart';
 import '../../di/injection.dart';
 
@@ -157,6 +158,38 @@ class DeviceManagementPlaceholder extends StatelessWidget {
                   icon: const Icon(Icons.bluetooth_searching),
                   label: const Text('Connecter un bracelet'),
                   style: OutlinedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 24),
+              const Divider(),
+              const SizedBox(height: 16),
+              Text(
+                'Mode Démonstration',
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      color: Colors.orange,
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                'Testez l\'application sans bracelet',
+                style: Theme.of(context).textTheme.bodySmall,
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 16),
+              SizedBox(
+                width: double.infinity,
+                child: OutlinedButton.icon(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/device-connection');
+                  },
+                  icon: const Icon(Icons.science),
+                  label: const Text('Démarrer le mode démo'),
+                  style: OutlinedButton.styleFrom(
+                    foregroundColor: Colors.orange,
+                    side: const BorderSide(color: Colors.orange),
                     padding: const EdgeInsets.symmetric(vertical: 16),
                   ),
                 ),
@@ -334,6 +367,46 @@ class AlertsScreen extends StatelessWidget {
                             ),
                           ),
                         ],
+                      ),
+                    ),
+                    const SizedBox(height: 32),
+                    const Divider(indent: 48, endIndent: 48),
+                    const SizedBox(height: 16),
+                    Text(
+                      'Mode Démonstration',
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                            color: Colors.orange,
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                    const SizedBox(height: 8),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 48),
+                      child: Text(
+                        'Testez le processus d\'intervention',
+                        style: Theme.of(context).textTheme.bodySmall,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 48),
+                      child: OutlinedButton.icon(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const DemoAlertScreen(),
+                            ),
+                          );
+                        },
+                        icon: const Icon(Icons.science),
+                        label: const Text('Intervention de démo'),
+                        style: OutlinedButton.styleFrom(
+                          foregroundColor: Colors.orange,
+                          side: const BorderSide(color: Colors.orange),
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                        ),
                       ),
                     ),
                   ],

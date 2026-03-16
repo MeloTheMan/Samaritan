@@ -1,258 +1,371 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import '../bloc/intervention_bloc.dart';
-import '../bloc/intervention_state.dart';
-import '../bloc/intervention_event.dart';
 import '../../domain/entities/prognosis.dart';
 import '../../domain/entities/care_action.dart';
+import '../../domain/entities/take_charge_session.dart';
 import '../widgets/vital_signs_display.dart';
 import 'intervention_summary_screen.dart';
 import 'intervention_ai_assistant_screen.dart';
-import '../../../ai_assistant/presentation/bloc/ai_assistant_bloc.dart';
+import '../../../../core/services/demo_service.dart';
 import '../../../../core/di/injection.dart';
+import '../../../ai_assistant/presentation/bloc/ai_assistant_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class TakeChargeScreen extends StatelessWidget {
-  const TakeChargeScreen({super.key});
+/// Écran de prise en charge en mode démo
+class DemoTakeChargeScreen extends StatefulWidget {
+  final int scenarioIndex;
+
+  const DemoTakeChargeScreen({
+    super.key,
+    required this.scenarioIndex,
+  });
+
+  @override
+  State<DemoTakeChargeScreen> createState() => _DemoTakeChargeScreenState();
+}
+
+class _DemoTakeChargeScreenState extends State<DemoTakeChargeScreen> {
+  final DemoService _demoService = getIt<DemoService>();
+  late TakeChargeSession _session;
+  StreamSubscription? _vitalSignsSubscription;
+  Timer? _durationTimer;
+
+  @override
+  void initState() {
+    super.initState();
+    _initializeSession();
+    _startVitalSignsStream();
+    _startDurationTimer();
+  }
+
+  void _initializeSession() {
+    final vitalSigns = _demoService.generateCriticalVitalSigns();
+    final history = _demoService.generateVitalSignsHistory(
+      count: 10,
+      interval: const Duration(seconds: 30),
+      critical: true,
+    );
+
+    // Créer un pronostic basé sur les signes vitaux
+    final prognosis = _generatePrognosis(vitalSigns);
+
+    _session = TakeChargeSession(
+      sessionId: 'DEMO_SESSION_${DateTime.now().millisecondsSinceEpoch}',
+      victimDeviceId: 'DEMO_VICTIM',
+      volunteerId: 'DEMO_VOLUNTEER',
+      alertId: 'DEMO_ALERT',
+      startTime: DateTime.now(),
+      initialPrognosis: prognosis,
+      vitalSignsHistory: history,
+      actionsPerformed: [],
+    );
+  }
+
+  Prognosis _generatePrognosis(dynamic vitalSigns) {
+    final criticalFactors = <CriticalFactor>[];
+    PrognosisLevel level = PrognosisLevel.stable;
+    String description = '';
+
+    // Analyser les signes vitaux
+    if (vitalSigns.temperature < 35.0) {
+      criticalFactors.add(const CriticalFactor(
+        factor: 'Hypothermie',
+        description: 'Température corporelle dangereusement basse',
+        severity: 'high',
+      ));
+      level = PrognosisLevel.critical;
+    } else if (vitalSigns.temperature > 40.0) {
+      criticalFactors.add(const CriticalFactor(
+        factor: 'Hyperthermie',
+        description: 'Température corporelle dangereusement élevée',
+        severity: 'high',
+      ));
+      level = PrognosisLevel.critical;
+    }
+
+    if (vitalSigns.heartRate < 40) {
+      criticalFactors.add(const CriticalFactor(
+        factor: 'Bradycardie sévère',
+        description: 'Rythme cardiaque trop lent',
+        severity: 'high',
+      ));
+      level = PrognosisLevel.critical;
+    } else if (vitalSigns.heartRate > 150) {
+      criticalFactors.add(const CriticalFactor(
+        factor: 'Tachycardie',
+        description: 'Rythme cardiaque trop rapide',
+        severity: 'high',
+      ));
+      level = PrognosisLevel.critical;
+    }
+
+    if (vitalSigns.oxygenSaturation < 85) {
+      criticalFactors.add(const CriticalFactor(
+        factor: 'Hypoxie sévère',
+        description: 'Saturation en oxygène critique',
+        severity: 'high',
+      ));
+      level = PrognosisLevel.critical;
+    }
+
+    if (vitalSigns.fallDetected) {
+      criticalFactors.add(const CriticalFactor(
+        factor: 'Traumatisme',
+        description: 'Chute détectée - risque de blessures',
+        severity: 'high',
+      ));
+      if (level != PrognosisLevel.critical) {
+        level = PrognosisLevel.serious;
+      }
+    }
+
+    // Générer la description
+    if (level == PrognosisLevel.critical) {
+      description = 'État critique nécessitant une intervention immédiate. '
+          'Plusieurs paramètres vitaux sont hors normes.';
+    } else if (level == PrognosisLevel.serious) {
+      description = 'État grave nécessitant une surveillance rapprochée.';
+    } else {
+      description = 'État stable mais nécessite une surveillance.';
+    }
+
+    // Générer les recommandations
+    final recommendations = <String>[];
+    if (vitalSigns.temperature < 35.0) {
+      recommendations.add('Réchauffer progressivement la victime');
+      recommendations.add('Surveiller la conscience');
+    } else if (vitalSigns.temperature > 40.0) {
+      recommendations.add('Refroidir la victime progressivement');
+      recommendations.add('Hydrater si conscient');
+    }
+
+    if (vitalSigns.heartRate < 40 || vitalSigns.heartRate > 150) {
+      recommendations.add('Surveiller le pouls en continu');
+      recommendations.add('Préparer à appeler le 15');
+    }
+
+    if (vitalSigns.oxygenSaturation < 90) {
+      recommendations.add('Assurer une bonne ventilation');
+      recommendations.add('Position semi-assise si possible');
+    }
+
+    if (vitalSigns.fallDetected) {
+      recommendations.add('Ne pas déplacer la victime');
+      recommendations.add('Vérifier les blessures visibles');
+    }
+
+    if (recommendations.isEmpty) {
+      recommendations.add('Surveiller les signes vitaux');
+      recommendations.add('Rassurer la victime');
+    }
+
+    return Prognosis(
+      level: level,
+      description: description,
+      criticalFactors: criticalFactors,
+      initialRecommendations: recommendations,
+      analyzedAt: DateTime.now(),
+    );
+  }
+
+  void _startVitalSignsStream() {
+    _vitalSignsSubscription = _demoService.startVitalSignsStream(critical: true).listen((vitalSigns) {
+      setState(() {
+        _session = _session.copyWith(
+          vitalSignsHistory: [..._session.vitalSignsHistory, vitalSigns],
+        );
+      });
+    });
+  }
+
+  void _startDurationTimer() {
+    _durationTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      setState(() {
+        // Force rebuild pour mettre à jour la durée
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _vitalSignsSubscription?.cancel();
+    _durationTimer?.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Prise en charge'),
-        backgroundColor: Colors.red,
+        title: const Text('Prise en charge (Démo)'),
+        backgroundColor: Colors.orange,
         foregroundColor: Colors.white,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.history),
-            onPressed: () {
-              // TODO: Afficher l'historique des actions
-            },
-          ),
-        ],
       ),
-      body: BlocConsumer<InterventionBloc, InterventionState>(
-        listener: (context, state) {
-          if (state is InterventionCompleted) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Intervention terminée avec succès'),
-                backgroundColor: Colors.green,
-              ),
-            );
-            Navigator.of(context).popUntil((route) => route.isFirst);
-          } else if (state is InterventionError) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(state.message),
-                backgroundColor: Colors.red,
-              ),
-            );
-          }
-        },
-        builder: (context, state) {
-          if (state is InterventionConnecting) {
-            return const Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CircularProgressIndicator(),
-                  SizedBox(height: 16),
-                  Text('Connexion au bracelet de la victime...'),
-                ],
-              ),
-            );
-          }
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            // Bandeau démo
+            _buildDemoBanner(),
+            const SizedBox(height: 16),
 
-          if (state is InterventionActive ||
-              state is InterventionVitalSignsUpdated ||
-              state is InterventionCareActionAdded) {
-            final session = (state is InterventionActive)
-                ? state.session
-                : (state is InterventionVitalSignsUpdated)
-                    ? state.session
-                    : (state as InterventionCareActionAdded).session;
+            // Durée de l'intervention
+            _buildDurationCard(context, _session.duration),
+            const SizedBox(height: 16),
 
-            return SingleChildScrollView(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  // Durée de l'intervention
-                  _buildDurationCard(context, session.duration),
-                  const SizedBox(height: 16),
+            // Pronostic vital
+            _buildPrognosisCard(context, _session.initialPrognosis),
+            const SizedBox(height: 16),
 
-                  // Pronostic vital
-                  _buildPrognosisCard(context, session.initialPrognosis),
-                  const SizedBox(height: 16),
-
-                  // Signes vitaux en temps réel
-                  if (session.vitalSignsHistory.isNotEmpty) ...[
-                    Text(
-                      'Signes vitaux actuels',
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
+            // Signes vitaux en temps réel
+            if (_session.vitalSignsHistory.isNotEmpty) ...[
+              Text(
+                'Signes vitaux actuels',
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.bold,
                     ),
-                    const SizedBox(height: 12),
-                    VitalSignsDisplay(
-                      vitalSigns: session.vitalSignsHistory.last,
-                      showAmbientData: true,
-                      showSensorStatus: true,
-                    ),
-                    const SizedBox(height: 16),
-                  ],
+              ),
+              const SizedBox(height: 12),
+              VitalSignsDisplay(
+                vitalSigns: _session.vitalSignsHistory.last,
+                showAmbientData: true,
+                showSensorStatus: true,
+              ),
+              const SizedBox(height: 16),
+            ],
 
-                  // Recommandations de soins
-                  _buildRecommendationsCard(
-                    context,
-                    session.initialPrognosis.initialRecommendations,
+            // Recommandations de soins
+            _buildRecommendationsCard(
+              context,
+              _session.initialPrognosis.initialRecommendations,
+              _session.vitalSignsHistory.isNotEmpty ? _session.vitalSignsHistory.last : null,
+            ),
+            const SizedBox(height: 16),
+
+            // Actions effectuées
+            if (_session.actionsPerformed.isNotEmpty) ...[
+              Text(
+                'Actions effectuées (${_session.actionsPerformed.length})',
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
+              const SizedBox(height: 12),
+              ..._session.actionsPerformed.map(
+                (action) => Card(
+                  child: ListTile(
+                    leading: Icon(
+                      action.completed ? Icons.check_circle : Icons.circle_outlined,
+                      color: action.completed ? Colors.green : Colors.grey,
+                    ),
+                    title: Text(action.description),
+                    subtitle: Text(
+                      '${action.performedAt.hour}:${action.performedAt.minute.toString().padLeft(2, '0')}',
+                    ),
                   ),
-                  const SizedBox(height: 16),
+                ),
+              ),
+              const SizedBox(height: 16),
+            ],
 
-                  // Actions effectuées
-                  if (session.actionsPerformed.isNotEmpty) ...[
-                    Text(
-                      'Actions effectuées (${session.actionsPerformed.length})',
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
-                    ),
-                    const SizedBox(height: 12),
-                    ...session.actionsPerformed.map(
-                      (action) => Card(
-                        child: ListTile(
-                          leading: Icon(
-                            action.completed ? Icons.check_circle : Icons.circle_outlined,
-                            color: action.completed ? Colors.green : Colors.grey,
-                          ),
-                          title: Text(action.description),
-                          subtitle: Text(
-                            '${action.performedAt.hour}:${action.performedAt.minute.toString().padLeft(2, '0')}',
-                          ),
-                        ),
+            // Boutons d'action
+            ElevatedButton.icon(
+              onPressed: () {
+                _showAddActionDialog(context);
+              },
+              icon: const Icon(Icons.add),
+              label: const Text('Ajouter une action de soins'),
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+              ),
+            ),
+            const SizedBox(height: 12),
+            OutlinedButton.icon(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => BlocProvider(
+                      create: (context) => getIt<AIAssistantBloc>(),
+                      child: InterventionAIAssistantScreen(
+                        session: _session,
                       ),
                     ),
-                    const SizedBox(height: 16),
-                  ],
-
-                  // Boutons d'action
-                  ElevatedButton.icon(
-                    onPressed: () {
-                      _showAddActionDialog(context, session);
-                    },
-                    icon: const Icon(Icons.add),
-                    label: const Text('Ajouter une action de soins'),
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                    ),
                   ),
-                  const SizedBox(height: 12),
-                  OutlinedButton.icon(
-                    onPressed: () {
-                      // Ouvrir l'assistant IA avec le contexte de l'intervention
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => BlocProvider(
-                            create: (context) => getIt<AIAssistantBloc>(),
-                            child: InterventionAIAssistantScreen(
-                              session: session,
-                            ),
-                          ),
-                        ),
-                      );
-                    },
-                    icon: const Icon(Icons.psychology),
-                    label: const Text('Affiner avec l\'IA'),
-                    style: OutlinedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-
-                  // Bouton d'urgence
-                  ElevatedButton.icon(
-                    onPressed: () {
-                      // TODO: Appeler les urgences
-                      showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                          title: const Text('Appeler les urgences'),
-                          content: const Text(
-                            'Voulez-vous appeler le 15 (SAMU) ?',
-                          ),
-                          actions: [
-                            TextButton(
-                              onPressed: () => Navigator.pop(context),
-                              child: const Text('Annuler'),
-                            ),
-                            ElevatedButton(
-                              onPressed: () {
-                                // TODO: Lancer l'appel
-                                Navigator.pop(context);
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.red,
-                              ),
-                              child: const Text('Appeler'),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                    icon: const Icon(Icons.phone, size: 24),
-                    label: const Text(
-                      'APPELER LES URGENCES (15)',
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.orange,
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(vertical: 18),
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-
-                  // Bouton terminer l'intervention
-                  ElevatedButton.icon(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => InterventionSummaryScreen(
-                            session: session,
-                          ),
-                        ),
-                      );
-                    },
-                    icon: const Icon(Icons.done, size: 24),
-                    label: const Text(
-                      'TERMINER L\'INTERVENTION',
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(vertical: 18),
-                    ),
-                  ),
-                ],
+                );
+              },
+              icon: const Icon(Icons.psychology),
+              label: const Text('Affiner avec l\'IA'),
+              style: OutlinedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(vertical: 16),
               ),
-            );
-          }
+            ),
+            const SizedBox(height: 24),
 
-          // État initial ou en attente
-          return const Center(
+            // Bouton terminer l'intervention
+            ElevatedButton.icon(
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => InterventionSummaryScreen(
+                      session: _session,
+                    ),
+                  ),
+                );
+              },
+              icon: const Icon(Icons.done, size: 24),
+              label: const Text(
+                'TERMINER L\'INTERVENTION',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green,
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(vertical: 18),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDemoBanner() {
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: Colors.orange.shade50,
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: Colors.orange.shade300),
+      ),
+      child: Row(
+        children: [
+          Icon(Icons.science, color: Colors.orange.shade700),
+          const SizedBox(width: 12),
+          Expanded(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CircularProgressIndicator(),
-                SizedBox(height: 16),
-                Text('Initialisation de l\'intervention...'),
+                Text(
+                  'Mode Démonstration',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.orange.shade900,
+                  ),
+                ),
+                Text(
+                  'Intervention simulée avec données fictives',
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.orange.shade700,
+                  ),
+                ),
               ],
             ),
-          );
-        },
+          ),
+        ],
       ),
     );
   }
@@ -376,17 +489,10 @@ class TakeChargeScreen extends StatelessWidget {
   Widget _buildRecommendationsCard(
     BuildContext context,
     List<String> recommendations,
+    dynamic vitalSigns,
   ) {
-    // Obtenir le diagnostic basé sur les signes vitaux actuels
-    final session = (context.read<InterventionBloc>().state is InterventionActive)
-        ? (context.read<InterventionBloc>().state as InterventionActive).session
-        : (context.read<InterventionBloc>().state is InterventionVitalSignsUpdated)
-            ? (context.read<InterventionBloc>().state as InterventionVitalSignsUpdated).session
-            : (context.read<InterventionBloc>().state as InterventionCareActionAdded).session;
-
     String? diagnosis;
-    if (session.vitalSignsHistory.isNotEmpty) {
-      final vitalSigns = session.vitalSignsHistory.last;
+    if (vitalSigns != null) {
       diagnosis = _getDiagnosisFromVitalSigns(vitalSigns);
     }
 
@@ -404,7 +510,6 @@ class TakeChargeScreen extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             
-            // Diagnostic possible
             if (diagnosis != null) ...[
               Container(
                 padding: const EdgeInsets.all(12),
@@ -447,7 +552,6 @@ class TakeChargeScreen extends StatelessWidget {
               const SizedBox(height: 12),
             ],
             
-            // Recommandations
             Text(
               'Actions recommandées',
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -503,36 +607,24 @@ class TakeChargeScreen extends StatelessWidget {
 
     final issues = <String>[];
 
-    // Température
     if (temp < 35.0) {
       issues.add('hypothermie (température < 35°C)');
     } else if (temp > 40.0) {
       issues.add('hyperthermie sévère (température > 40°C)');
-    } else if (temp > 38.5) {
-      issues.add('fièvre modérée');
     }
 
-    // Fréquence cardiaque
     if (hr < 40 && hr > 0) {
       issues.add('bradycardie sévère (FC < 40 BPM)');
     } else if (hr > 150) {
       issues.add('tachycardie importante (FC > 150 BPM)');
-    } else if (hr > 120) {
-      issues.add('tachycardie modérée');
-    } else if (hr < 50 && hr > 0) {
-      issues.add('bradycardie modérée');
     }
 
-    // SpO2
     if (spo2 < 85 && spo2 > 0) {
       issues.add('hypoxie sévère (SpO2 < 85%)');
     } else if (spo2 < 90 && spo2 > 0) {
       issues.add('hypoxie modérée (SpO2 < 90%)');
-    } else if (spo2 < 95 && spo2 > 0) {
-      issues.add('désaturation légère');
     }
 
-    // Chute
     if (fall) {
       issues.add('traumatisme suite à une chute');
     }
@@ -557,7 +649,7 @@ class TakeChargeScreen extends StatelessWidget {
     }
   }
 
-  void _showAddActionDialog(BuildContext context, dynamic session) {
+  void _showAddActionDialog(BuildContext context) {
     final actionController = TextEditingController();
     final notesController = TextEditingController();
     String selectedType = 'Évaluation';
@@ -624,7 +716,12 @@ class TakeChargeScreen extends StatelessWidget {
                   completed: true,
                 );
                 
-                context.read<InterventionBloc>().add(AddCareAction(action));
+                setState(() {
+                  _session = _session.copyWith(
+                    actionsPerformed: [..._session.actionsPerformed, action],
+                  );
+                });
+                
                 Navigator.pop(dialogContext);
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(

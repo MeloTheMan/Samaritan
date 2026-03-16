@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:typed_data';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:dartz/dartz.dart';
@@ -6,6 +7,7 @@ import '../../domain/repositories/intervention_repository.dart';
 import '../../domain/entities/take_charge_session.dart';
 import '../../../device/domain/repositories/device_repository.dart';
 import '../../../device/domain/entities/vital_signs.dart';
+import '../../../device/domain/entities/device_command.dart';
 import '../../../../core/error/failures.dart';
 import 'intervention_event.dart';
 import 'intervention_state.dart';
@@ -51,40 +53,54 @@ class InterventionBloc extends Bloc<InterventionEvent, InterventionState> {
       (session) async {
         _currentSession = session;
         
-        // Scanner et se connecter au bracelet "Samaritan Test"
+        // Scanner et se connecter au bracelet "Samaritan"
         try {
           print('🔍 Scanning for Samaritan bracelet...');
           
-          // Scanner pendant 5 secondes pour trouver le bracelet
+          // Scanner pendant 10 secondes pour trouver le bracelet
           String? braceletDeviceId;
+          int scanAttempts = 0;
+          const maxScanAttempts = 2;
           
-          await for (final result in deviceRepository.scanForDevices(timeout: const Duration(seconds: 5))) {
-            await result.fold(
-              (failure) async {
-                print('⚠️ Scan error: ${failure.message}');
-              },
-              (devices) async {
-                // Chercher un device nommé "Samaritan Test"
-                final samaritanDevice = devices.where((d) => 
-                  d.name.toLowerCase().contains('samaritan')
-                ).firstOrNull;
-                
-                if (samaritanDevice != null) {
-                  braceletDeviceId = samaritanDevice.id;
-                  print('✓ Found Samaritan bracelet: ${samaritanDevice.name} (${samaritanDevice.id})');
-                }
-              },
-            );
+          while (braceletDeviceId == null && scanAttempts < maxScanAttempts) {
+            scanAttempts++;
+            print('📡 Scan attempt $scanAttempts/$maxScanAttempts');
             
-            // Si on a trouvé le bracelet, arrêter le scan
-            if (braceletDeviceId != null) break;
+            await for (final result in deviceRepository.scanForDevices(timeout: const Duration(seconds: 10))) {
+              await result.fold(
+                (failure) async {
+                  print('⚠️ Scan error: ${failure.message}');
+                },
+                (devices) async {
+                  print('📱 Found ${devices.length} devices');
+                  
+                  // Chercher un device nommé "Samaritan"
+                  for (final device in devices) {
+                    print('  - ${device.name} (${device.id})');
+                    if (device.name.toLowerCase().contains('samaritan')) {
+                      braceletDeviceId = device.id;
+                      print('✓ Found Samaritan bracelet: ${device.name} (${device.id})');
+                      break;
+                    }
+                  }
+                },
+              );
+              
+              // Si on a trouvé le bracelet, arrêter le scan
+              if (braceletDeviceId != null) break;
+            }
+            
+            // Arrêter le scan
+            await deviceRepository.stopScan();
+            
+            if (braceletDeviceId == null && scanAttempts < maxScanAttempts) {
+              print('⏳ Retrying scan in 2 seconds...');
+              await Future.delayed(const Duration(seconds: 2));
+            }
           }
           
-          // Arrêter le scan
-          await deviceRepository.stopScan();
-          
           if (braceletDeviceId == null) {
-            print('❌ Samaritan bracelet not found');
+            print('❌ Samaritan bracelet not found after $scanAttempts attempts');
             emit(InterventionError(
               message: 'Bracelet Samaritan non trouvé. Assurez-vous qu\'il est allumé et à proximité.',
               session: session,
@@ -92,12 +108,16 @@ class InterventionBloc extends Bloc<InterventionEvent, InterventionState> {
             return;
           }
           
+          // À ce stade, braceletDeviceId n'est plus null - utiliser ! pour forcer non-null
+          final String deviceId = braceletDeviceId!;
+          
           // Se connecter au bracelet trouvé
-          print('🔗 Connecting to bracelet...');
-          final connectResult = await deviceRepository.connectToDevice(braceletDeviceId!);
+          print('🔗 Connecting to bracelet $deviceId...');
+          final connectResult = await deviceRepository.connectToDevice(deviceId);
           
           await connectResult.fold(
             (failure) async {
+              print('❌ Connection failed: ${failure.message}');
               emit(InterventionError(
                 message: 'Erreur de connexion au bracelet: ${failure.message}',
                 session: session,
@@ -106,11 +126,25 @@ class InterventionBloc extends Bloc<InterventionEvent, InterventionState> {
             (device) async {
               print('✓ Connected to bracelet');
               
+              // Envoyer la commande TAKE_CHARGE au bracelet
+              try {
+                await deviceRepository.sendCommand(
+                  deviceId,
+                  DeviceCommand(
+                    type: DeviceCommandType.takeCharge,
+                    payload: Uint8List(0),
+                  ),
+                );
+                print('✓ TAKE_CHARGE command sent');
+              } catch (e) {
+                print('⚠️ Failed to send TAKE_CHARGE command: $e');
+              }
+              
               // Émettre l'état actif
               emit(InterventionActive(session: session));
               
               // Écouter les mises à jour des signes vitaux en arrière-plan
-              final vitalSignsStream = deviceRepository.getVitalSignsStream(braceletDeviceId!);
+              final vitalSignsStream = deviceRepository.getVitalSignsStream(deviceId);
               
               // Utiliser emit.forEach pour gérer le stream correctement
               await emit.forEach<Either<Failure, VitalSigns>>(

@@ -4,6 +4,9 @@ import '../bloc/device_bloc.dart';
 import '../bloc/device_event.dart';
 import '../bloc/device_state.dart';
 import '../../domain/entities/wearable_device.dart';
+import 'demo_health_dashboard_screen.dart';
+import '../../../../core/services/demo_service.dart';
+import '../../../../core/di/injection.dart';
 
 class DeviceConnectionScreen extends StatefulWidget {
   const DeviceConnectionScreen({super.key});
@@ -100,7 +103,40 @@ class _DeviceConnectionScreenState extends State<DeviceConnectionScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
             ),
           ),
+          const SizedBox(height: 16),
+          const Divider(indent: 40, endIndent: 40),
+          const SizedBox(height: 8),
+          Text(
+            'Ou testez sans bracelet',
+            style: TextStyle(color: Colors.grey.shade600, fontSize: 14),
+          ),
+          const SizedBox(height: 12),
+          OutlinedButton.icon(
+            onPressed: () {
+              _startDemoMode(context);
+            },
+            icon: const Icon(Icons.science),
+            label: const Text('Mode Démo'),
+            style: OutlinedButton.styleFrom(
+              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+            ),
+          ),
         ],
+      ),
+    );
+  }
+
+  void _startDemoMode(BuildContext context) {
+    final demoService = getIt<DemoService>();
+    final demoDevice = demoService.generateDemoDevice();
+    
+    // Naviguer directement vers le dashboard de démo
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => DemoHealthDashboardScreen(
+          demoDevice: demoDevice,
+        ),
       ),
     );
   }

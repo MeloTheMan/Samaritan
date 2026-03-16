@@ -54,6 +54,7 @@ import '../../features/training/domain/repositories/training_repository.dart'
 import '../../features/training/presentation/bloc/training_bloc.dart' as _i669;
 import '../network/network_info.dart' as _i932;
 import '../services/authentication_service.dart' as _i551;
+import '../services/demo_service.dart' as _i656;
 import '../services/encryption_service.dart' as _i180;
 import '../services/permission_service.dart' as _i165;
 import '../services/secure_storage_service.dart' as _i535;
@@ -96,6 +97,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i47.ResponseGenerator>(() => _i47.ResponseGenerator());
     gh.factory<_i666.VitalSignsAnalyzer>(() => _i666.VitalSignsAnalyzer());
     gh.factory<_i43.AlertListenerService>(() => _i43.AlertListenerService());
+    gh.singleton<_i656.DemoService>(() => _i656.DemoService());
     gh.lazySingleton<_i895.Connectivity>(() => injectionModule.connectivity);
     gh.lazySingleton<_i558.FlutterSecureStorage>(
         () => injectionModule.secureStorage);

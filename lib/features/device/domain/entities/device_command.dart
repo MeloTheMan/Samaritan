@@ -2,6 +2,7 @@ import 'dart:typed_data';
 import 'package:equatable/equatable.dart';
 
 enum DeviceCommandType {
+  // Legacy commands
   updateFirmware,
   setMeasurementFrequency,
   setAlertThresholds,
@@ -9,6 +10,15 @@ enum DeviceCommandType {
   enableFallDetection,
   disableFallDetection,
   reboot,
+  
+  // Intervention commands
+  takeCharge,
+  endIntervention,
+  acknowledgeAlert,
+  cancelAlert,
+  requestStatus,
+  reset,
+  calibrateTemperature,
 }
 
 class DeviceCommand extends Equatable {
@@ -78,6 +88,58 @@ class DeviceCommand extends Equatable {
     return DeviceCommand(
       type: DeviceCommandType.calibrate,
       payload: Uint8List(0),
+    );
+  }
+
+  // Intervention command factories
+  factory DeviceCommand.takeCharge() {
+    return DeviceCommand(
+      type: DeviceCommandType.takeCharge,
+      payload: Uint8List(0),
+    );
+  }
+
+  factory DeviceCommand.endIntervention() {
+    return DeviceCommand(
+      type: DeviceCommandType.endIntervention,
+      payload: Uint8List(0),
+    );
+  }
+
+  factory DeviceCommand.acknowledgeAlert() {
+    return DeviceCommand(
+      type: DeviceCommandType.acknowledgeAlert,
+      payload: Uint8List(0),
+    );
+  }
+
+  factory DeviceCommand.cancelAlert() {
+    return DeviceCommand(
+      type: DeviceCommandType.cancelAlert,
+      payload: Uint8List(0),
+    );
+  }
+
+  factory DeviceCommand.requestStatus() {
+    return DeviceCommand(
+      type: DeviceCommandType.requestStatus,
+      payload: Uint8List(0),
+    );
+  }
+
+  factory DeviceCommand.reset() {
+    return DeviceCommand(
+      type: DeviceCommandType.reset,
+      payload: Uint8List(0),
+    );
+  }
+
+  factory DeviceCommand.calibrateTemperature(double offset) {
+    final offsetStr = offset.toStringAsFixed(1);
+    final bytes = Uint8List.fromList(offsetStr.codeUnits);
+    return DeviceCommand(
+      type: DeviceCommandType.calibrateTemperature,
+      payload: bytes,
     );
   }
 }

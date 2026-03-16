@@ -25,12 +25,16 @@ import 'features/take_charge/domain/entities/care_action.dart';
 import 'features/take_charge/domain/entities/intervention_outcome.dart';
 import 'features/take_charge/domain/entities/take_charge_session.dart';
 import 'features/take_charge/domain/entities/hive_adapters.dart' as intervention_adapters;
+import 'core/utils/hive_migration.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   
   // Initialize Hive
   await Hive.initFlutter();
+  
+  // Migrate old incompatible data
+  await HiveMigration.migrateVitalSignsData();
   
   // Register Hive adapters
   Hive.registerAdapter(CourseAdapter());
@@ -46,6 +50,7 @@ void main() async {
   
   // Register device adapters
   Hive.registerAdapter(VitalSignsAdapter());
+  Hive.registerAdapter(SensorStatusAdapter());
   Hive.registerAdapter(ConnectionStatusAdapter());
   Hive.registerAdapter(WearableDeviceAdapter());
   Hive.registerAdapter(DeviceSettingsAdapter());

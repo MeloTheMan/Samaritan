@@ -121,125 +121,124 @@ class AlertListenerService {
       final deviceId = device.remoteId.toString();
       final deviceName = result.advertisementData.advName;
       
-      // Log tous les appareils détectés
-      if (deviceName.isNotEmpty) {
-        print('📱 Device found: $deviceName ($deviceId)');
-      }
+      // DEBUG: Log tous les devices
+      print('🔍 Checking device: $deviceName ($deviceId)');
       
-      // Vérifier le cooldown pour éviter les doublons
-      if (_processedAlerts.containsKey(deviceId)) {
-        final lastAlert = _processedAlerts[deviceId]!;
-        if (DateTime.now().difference(lastAlert) < _alertCooldown) {
-          return; // Trop tôt pour une nouvelle alerte
-        }
-      }
-
       // Vérifier si l'appareil a le service d'alerte
       final serviceUuids = result.advertisementData.serviceUuids;
       
-      // Log les UUIDs pour debug
+      // DEBUG: Log les services
       if (serviceUuids.isNotEmpty) {
         print('  Services: ${serviceUuids.map((u) => u.toString()).join(", ")}');
+      } else {
+        print('  No services advertised');
       }
       
-      // Comparer avec format court et long
       final hasAlertService = serviceUuids.any((uuid) {
         final uuidStr = uuid.toString().toLowerCase();
-        // Format court: 180d
-        // Format long: 0000180d-0000-1000-8000-00805f9b34fb
         return uuidStr == '180d' || 
                uuidStr == ALERT_SERVICE_UUID.toLowerCase() ||
                uuidStr.contains('180d');
       });
 
       if (!hasAlertService) {
-        return; // Pas un bracelet d'alerte
-      }
-
-      print('🚨 Alert device detected: $deviceName ($deviceId)');
-
-      // Se connecter pour lire les données d'alerte
-      try {
-        print('  Connecting...');
-        await device.connect(timeout: const Duration(seconds: 5));
-        print('  ✓ Connected');
-
-        // Découvrir les services
-        print('  Discovering services...');
-        final services = await device.discoverServices();
-        print('  ✓ Found ${services.length} services');
-        
-        // Log tous les services pour debug
-        for (var service in services) {
-          print('    Service: ${service.uuid}');
-          for (var char in service.characteristics) {
-            print('      Char: ${char.uuid}');
-          }
-        }
-        
-        for (var service in services) {
-          final serviceUuid = service.uuid.toString().toLowerCase();
-          
-          // Comparer avec format court et long
-          if (serviceUuid == '180d' || 
-              serviceUuid == ALERT_SERVICE_UUID.toLowerCase() ||
-              serviceUuid.contains('180d')) {
-            print('  ✓ Found alert service: $serviceUuid');
-            
-            // Trouver la caractéristique d'alerte
-            for (var characteristic in service.characteristics) {
-              final charUuid = characteristic.uuid.toString().toLowerCase();
-              print('    Characteristic: $charUuid');
-              
-              // Comparer avec format court et long
-              final isAlertChar = charUuid == '2a38' || 
-                                  charUuid == ALERT_CHARACTERISTIC_UUID.toLowerCase() ||
-                                  charUuid.contains('2a38');
-              
-              if (isAlertChar) {
-                print('    ✓ Found alert characteristic');
-                
-                // Lire les données d'alerte
-                print('    Reading data...');
-                final data = await characteristic.read();
-                
-                if (data.isNotEmpty) {
-                  print('    ✓ Alert data received: ${data.length} bytes');
-                  
-                  // Parser l'alerte
-                  final alert = parseAlertData(Uint8List.fromList(data), deviceId);
-                  
-                  // Marquer comme traité
-                  _processedAlerts[deviceId] = DateTime.now();
-                  
-                  // Émettre l'alerte
-                  _alertController?.add(alert);
-                  
-                  print('✅ Alert emitted: ${alert.alertId}');
-                } else {
-                  print('    ⚠️ No data in characteristic');
-                }
-                break;
-              }
-            }
-            break;
-          }
-        }
-        
-        // Déconnecter
-        await device.disconnect();
-        print('  ✓ Disconnected');
-        
-      } catch (e) {
-        print('  ❌ Error reading alert: $e');
-        try {
-          await device.disconnect();
-        } catch (_) {}
+        return; // Pas un bracelet Samaritan
       }
       
-    } catch (e) {
+      print('✅ Samaritan device found: $deviceName');
+
+      // Lire les manufacturer data pour détecter une alerte
+      final manufacturerDataMap = result.advertisementData.manufacturerData;
+      
+      // DEBUG: Log manufacturer data
+      print('  Manufacturer data map: $manufacturerDataMap');
+      
+      if (manufacturerDataMap.isNotEmpty) {
+        // Extraire les données du premier manufacturer (généralement la clé est le company ID)
+        final manufacturerData = manufacturerDataMap.values.first;
+        
+        print('  Manufacturer data bytes: $manufacturerData');
+        
+        // Format: AlertFlag(1) + HeartRate(1) + SpO2(1) + Temp(1)
+        if (manufacturerData.length >= 4) {
+          final int alertFlag = manufacturerData[0];
+          final int heartRate = manufacturerData[1];
+          final int spo2 = manufacturerData[2];
+          final int temp = manufacturerData[3];
+          
+          print('  Alert Flag: 0x${alertFlag.toRadixString(16).padLeft(2, '0')}');
+          print('  HR: $heartRate, SpO2: $spo2%, Temp: $temp°C');
+          
+          // Vérifier si une alerte est active
+          if (alertFlag == 0xFF) {
+            print('🚨 ALERT detected from $deviceName ($deviceId)');
+            
+            // Vérifier le cooldown pour éviter les doublons
+            if (_processedAlerts.containsKey(deviceId)) {
+              final lastAlert = _processedAlerts[deviceId]!;
+              if (DateTime.now().difference(lastAlert) < _alertCooldown) {
+                print('  ⏭️ Skipping (cooldown)');
+                return; // Trop tôt pour une nouvelle alerte
+              }
+            }
+            
+            // Créer une alerte à partir des manufacturer data
+            final alert = _createAlertFromAdvertisement(
+              deviceId,
+              heartRate,
+              spo2,
+              temp.toDouble(),
+            );
+            
+            // Marquer comme traité
+            _processedAlerts[deviceId] = DateTime.now();
+            
+            // Émettre l'alerte
+            _alertController?.add(alert);
+            
+            print('✅ Alert emitted: ${alert.alertId}');
+          } else {
+            print('  ℹ️ No alert (flag: 0x${alertFlag.toRadixString(16).padLeft(2, '0')})');
+          }
+        } else {
+          print('  ⚠️ Manufacturer data too short: ${manufacturerData.length} bytes');
+        }
+      } else {
+        print('  ⚠️ No manufacturer data');
+      }
+      
+    } catch (e, stackTrace) {
       print('❌ Error checking device: $e');
+      print('Stack trace: $stackTrace');
     }
+  }
+  
+  /// Crée une alerte à partir des données d'advertisement
+  EmergencyAlert _createAlertFromAdvertisement(
+    String deviceId,
+    int heartRate,
+    int spo2,
+    double temperature,
+  ) {
+    final vitalSigns = VitalSigns(
+      temperature: temperature,
+      heartRate: heartRate,
+      oxygenSaturation: spo2,
+      timestamp: DateTime.now(),
+      sensorStatus: const SensorStatus(
+        max30102Available: true,
+        mpu6050Available: false,
+        dht11Available: false,
+      ),
+    );
+    
+    return EmergencyAlert(
+      alertId: '${deviceId}_${DateTime.now().millisecondsSinceEpoch}',
+      victimDeviceId: deviceId,
+      vitalSigns: vitalSigns,
+      status: AlertStatus.active,
+      receivedAt: DateTime.now(),
+    );
   }
 
   /// Parse les données brutes d'une alerte BLE

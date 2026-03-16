@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../domain/entities/emergency_alert.dart';
 import 'navigation_screen.dart';
+import '../../../../core/services/demo_service.dart';
+import '../../../../core/di/injection.dart';
 
 class AlertNotificationScreen extends StatelessWidget {
   final EmergencyAlert alert;
